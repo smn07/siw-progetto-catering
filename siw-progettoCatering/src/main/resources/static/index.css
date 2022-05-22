@@ -1,0 +1,36 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    color: orangered;
+    text-align: center;
+    font-family: Lucida Handwriting;
+    font-size: 600%;
+}
+
+.class {
+    margin-top: 5%;
+    margin-bottom: 2%;
+}
+
+.par {
+    color:aliceblue;
+    text-align: center;
+}
+
+.para {
+    text-align: center;
+}
+
+.login {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.button {
+    background-color: orangered;
+    color: aliceblue;
+    border-radius: 40% 40% 40% 40%;
+    font-size: 30px;
+}

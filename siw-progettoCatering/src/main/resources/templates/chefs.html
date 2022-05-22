@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<h4>Elenco chef</h4>
+	<ul>
+	<li th:each="chef : ${chefs}">
+		<a href="chef.html"
+			th:href="@{'/chef' + '/' + ${chef.id}}"
+			th:text="${chef.nome}">chef1</a>
+	</li>
+	</ul>
+</body>
+</html>

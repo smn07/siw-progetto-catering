@@ -1,12 +1,13 @@
 package com.example.demo.model;
 
 import java.util.List;
-import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 
@@ -21,9 +22,18 @@ public class Chef {
 	private String cognome;
 	private String nazionalita;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@JoinColumn(name = "chef")
 	private List<Buffet> buffet;
 	
+	public Chef() {}
+	
+	public Chef(String nome, String cognome, String nazionalita, List<Buffet> buffet) {
+		this.nome = nome;
+		this.cognome = cognome;
+		this.nazionalita = nazionalita;
+		this.buffet = buffet;
+	}
 
 	public Long getId() {
 		return id;

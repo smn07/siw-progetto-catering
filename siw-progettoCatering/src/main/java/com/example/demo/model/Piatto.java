@@ -20,6 +20,14 @@ public class Piatto {
 	
 	@OneToMany
 	private List<Ingrediente> ingredienti;
+	
+	public Piatto() {}
+
+	public Piatto(String nome, String descrizione, List<Ingrediente> ingredienti) {
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.ingredienti = ingredienti;
+	}
 
 	public Long getId() {
 		return id;
@@ -55,7 +63,7 @@ public class Piatto {
 
 	@Override
 	public int hashCode() {
-		return this.getDescrizione().hashCode() + this.getNome().hashCode() + 31;
+		return this.getId().hashCode() + 31;
 	}
 
 	@Override
@@ -65,7 +73,7 @@ public class Piatto {
 		if (getClass() != obj.getClass())
 			return false;
 		Buffet other = (Buffet) obj;
-		return this.getNome().equals(other.getNome()) && this.getDescrizione().equals(other.getDescrizione());
+		return this.getId() == other.getId();
 	}
 	
 }

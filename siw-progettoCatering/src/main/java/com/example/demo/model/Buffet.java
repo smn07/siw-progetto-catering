@@ -1,12 +1,14 @@
 package com.example.demo.model;
 
 import java.util.List;
-import java.util.Objects;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
@@ -16,11 +18,24 @@ public class Buffet {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable = false)
 	private String nome;
 	private String descrizione;
 	
-	@OneToMany
+	@OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Piatto> piatti;
+	
+	@ManyToOne
+	private Chef chef;
+	
+	public Buffet() {}
+
+	public Buffet(String nome, String descrizione, List<Piatto> piatti, Chef chef) {
+		this.nome = nome;
+		this.descrizione = descrizione;
+		this.piatti = piatti;
+		this.chef = chef;
+	}
 
 	public Long getId() {
 		return id;
@@ -54,9 +69,17 @@ public class Buffet {
 		this.piatti = piatti;
 	}
 
+	public Chef getChef() {
+		return chef;
+	}
+
+	public void setChef(Chef chef) {
+		this.chef = chef;
+	}
+
 	@Override
 	public int hashCode() {
-		return this.getDescrizione().hashCode() + this.getNome().hashCode() + 31;
+		return this.getNome().hashCode() + 31;
 	}
 
 	@Override
@@ -66,7 +89,7 @@ public class Buffet {
 		if (getClass() != obj.getClass())
 			return false;
 		Buffet other = (Buffet) obj;
-		return this.getNome().equals(other.getNome()) && this.getDescrizione().equals(other.getDescrizione());
+		return this.getNome().equals(other.getNome());
 	}
 	
 	
