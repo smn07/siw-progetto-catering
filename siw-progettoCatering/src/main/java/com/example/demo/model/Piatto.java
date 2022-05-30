@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -7,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity 
@@ -19,9 +21,12 @@ public class Piatto {
 	private String descrizione;
 	
 	@OneToMany
+	@JoinColumn(name="ingrediente")
 	private List<Ingrediente> ingredienti;
 	
-	public Piatto() {}
+	public Piatto() {
+		//this.ingredienti = new ArrayList<Ingrediente>();
+	}
 
 	public Piatto(String nome, String descrizione, List<Ingrediente> ingredienti) {
 		this.nome = nome;

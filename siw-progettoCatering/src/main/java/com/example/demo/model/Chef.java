@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,11 +23,13 @@ public class Chef {
 	private String cognome;
 	private String nazionalita;
 	
-	@OneToMany(cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToMany(cascade = {CascadeType.ALL})
 	@JoinColumn(name = "chef")
 	private List<Buffet> buffet;
 	
-	public Chef() {}
+	public Chef() {
+		//this.buffet = new ArrayList<Buffet>();
+	}
 	
 	public Chef(String nome, String cognome, String nazionalita, List<Buffet> buffet) {
 		this.nome = nome;

@@ -1,0 +1,137 @@
+body {
+    background-color: black;
+}
+
+h1 {
+    color: black;
+    font-family: Lucida Handwriting;
+    font-size: 300%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+
+
+
+/*
+a {
+    text-decoration: none;
+    color: black;
+    font-size: medium;
+    font-family: Arial, Helvetica, sans-serif;
+    
+}
+a:hover {
+	text-decoration: none; 
+	color: red;
+	font-weight: bold;
+}
+
+nav {
+    background-color: rgb(60,40,60);
+    color: white;
+    font-family: sans-serif;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+
+nav>ul {
+    margin: 0%;
+    padding: 0;
+    text-align:center;
+    cursor:pointer;
+}
+
+nav>ul>li {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    margin: 2%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+nav>ul>li:hover {
+	overflow: visible;
+}
+
+nav>ul>li>ul {
+	list-style: none ;
+    background-color: rgb(154, 89, 154);
+    text-align: center;
+}
+
+nav>ul>li>ul>li {
+	margin: 1em;
+	white-space: nowrap;
+}*/
+
+div#menu {
+    width: 80%;
+    float: left;
+    margin: 0;
+    padding: 0;
+    margin-top: 9%;
+    margin-bottom: 2%;
+    margin-left: 7%;
+
+}
+
+/*tutte le liste discendenti del div con id="menu"*/
+div#menu ul{
+margin: 0;
+padding: 0;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-size: large;
+list-style-type: none;
+
+}
+
+/*tutti gli elementi delle liste discendenti del div con id="menu"*/
+div#menu li{
+float:left; /*elementi affiancati uno all'altro*/
+margin: 0;
+padding: 0;
+border-right: 1px solid black;
+color:black;
+}
+
+div#menu a{
+display: block;
+padding: 5px;
+color: white;
+background-color: black;
+text-decoration: none;
+}
+
+div#menu a:hover{
+color: orangered;
+text-decoration: none;
+}
+
+/*i sotto menu non devono essere visibili*/
+div#menu li ul{
+display: none
+}
+
+/*lista ul discendente di li in stato hover*/
+div#menu li:hover ul{
+display: block;
+position: absolute;
+z-index:1; /*faccio in modo che il block sia in primo piano*/
+;
+padding: 0;
+margin: 0 0 0 -1px;
+background-color: white;
+}
+
+div#menu li li { border:none; }
+div#menu li li a { padding:2px 2px 2px 10px; }
+
+div.h {
+    background-image: url("immagineSfondoHome2.jpg");
+    height: 600px;
+    margin-top: -2%;
+
+}

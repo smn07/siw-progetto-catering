@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	</head>
+<body>
+	<div>
+		<h4>Dettagli buffet</h4>
+	</div>
+	<div>
+		<span th:text="${buffet.nome}">buffet chef</span>
+   	</div>
+	<div>
+		<span th:text="${buffet.descrizione}">descrizione buffet</span>
+   	</div>
+	<div>
+	<ul>
+	<li th:each="piatto : ${buffet.piatti}">
+		<a th:href="@{'/piatto' + '/' + ${piatto.id}}"
+			th:text="${piatto.nome}">piatto1</a>
+	</li>
+	</ul>
+	</div>
+	<footer><a href="/">Home</a></footer>
+</body>
+</html>

@@ -5,7 +5,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.model.Buffet;
 import com.example.demo.model.Chef;
 import com.example.demo.repository.ChefRepository;
 @Service
@@ -24,6 +26,15 @@ public class ChefService {
 	
 	public Chef findById(Long id) {
 		return chefRepository.findById(id).get();
+	}
+
+	public List<Buffet> findAllBuffet(Long id) {
+		return this.chefRepository.findAllBuffet(id);
+	}
+	
+	@Transactional
+	public void deleteById(Long id) {
+		this.chefRepository.deleteById(id);
 	}
 
 }

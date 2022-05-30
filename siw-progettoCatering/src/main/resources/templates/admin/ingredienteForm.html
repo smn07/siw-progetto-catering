@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Form Ingrediente</title>
+	</head>
+<body>
+<h1>Aggiungi un ingrediente</h1>
+
+<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
+	<div th:if="${#fields.hasGlobalErrors()}">
+		<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+	</div>
+	<div>
+		<span>Nome:</span>
+		<span><input type="text" th:field="*{nome}"/></span>
+		<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+	</div>
+	<div>
+		<span>Descrizione:</span>
+		<span><input type="text" th:field="*{descrizione}"/></span>
+		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+	</div>
+	<div>
+		<span>Origine:</span>
+		<span><input type="text" th:field="*{origine}"/></span>
+		<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>
+	</div>
+	<div>
+		<span><button type="submit">Conferma</button></span>
+	</div>
+</form>
+</body>
+</html>

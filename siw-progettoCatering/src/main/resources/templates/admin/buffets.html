@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>  
+<body>
+	<h4>Elenco buffet</h4>
+	<ul>
+	<li th:each="buffet : ${buffets}">
+		<a th:href="@{'/admin/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet1</a>
+		<a th:href="@{'/admin/cancellaBuffet' + '/' + ${buffet.id}}">cancella</a>
+	</li>
+	</ul>
+	<footer><a href="/admin/home">Home</a></footer>
+</body>
+</html>

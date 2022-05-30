@@ -15,12 +15,14 @@ public class Ingrediente {
 	@Column(nullable = false)
 	private String nome;
 	private String descrizione;
+	private String origine;
 	
 	public Ingrediente() {}
 	
-	public Ingrediente(String nome, String descrizione) {
+	public Ingrediente(String nome, String descrizione, String origine) {
 		this.nome = nome;
 		this.descrizione = descrizione;
+		this.origine = origine;
 	}
 
 	public Long getId() {
@@ -45,6 +47,14 @@ public class Ingrediente {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public String getOrigine() {
+		return origine;
+	}
+
+	public void setOrigine(String origine) {
+		this.origine = origine;
 	}
 
 	@Override
