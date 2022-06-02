@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.demo.model.Ingrediente;
+import com.example.demo.model.Piatto;
 import com.example.demo.service.IngredienteService;
 import com.example.demo.validator.IngredienteValidator;
 
@@ -80,5 +81,34 @@ public class IngredienteController {
 			return "/admin/ingrediente.html";
 		} else
 			return "/admin/ingredienteForm.html"; // ci sono errori, torna alla form iniziale
+	}
+	
+	@GetMapping("/admin/modificaIngrediente/{id}")
+	public String modificaIngrediente(@PathVariable("id")Long id, Model model) {
+		model.addAttribute("ingrediente",this.ingredienteService.findById(id));
+		return "/admin/ingredienteFormMod.html";
+	}
+	
+	@PostMapping("/admin/ingredienteMod/{id}")
+	public String modificaIngredienteForm(@PathVariable("id")Long vecchioId,@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,BindingResult bindingResult, Model model) {
+		
+		if (!bindingResult.hasErrors()){// se i dati sono corretti
+			
+			Ingrediente vecchioIngrediente = this.ingredienteService.findById(vecchioId);
+			vecchioIngrediente.setId(ingrediente.getId());
+			vecchioIngrediente.setNome(ingrediente.getNome());
+			vecchioIngrediente.setDescrizione(ingrediente.getDescrizione());
+			vecchioIngrediente.setOrigine(ingrediente.getOrigine());
+			
+			this.ingredienteService.save(vecchioIngrediente);
+			
+			model.addAttribute("ingrediente", vecchioIngrediente);
+			return "/admin/ingrediente.html";
+		} else {
+
+			model.addAttribute("ingrediente",this.ingredienteService.findById(vecchioId));
+			return "admin/ingredienteFormMod.html"; // ci sono errori, torna alla form iniziale
+			
+		}
 	}
 }

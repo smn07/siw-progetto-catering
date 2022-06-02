@@ -6,4 +6,6 @@ import com.example.demo.model.Piatto;
 
 public interface PiattoRepository extends CrudRepository<Piatto, Long> {
 
+	boolean existsByNome(String nome);
+
 }

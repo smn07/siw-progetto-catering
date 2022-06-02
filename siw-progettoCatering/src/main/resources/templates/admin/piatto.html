@@ -14,13 +14,14 @@
 		<span th:text="${piatto.descrizione}">descrizione piatto</span>
    	</div>
 	<div>
+	<h4>Ingredienti di questo piatto:</h4>
 	<ul>
 	<li th:each="ingrediente : ${piatto.ingredienti}">
-		<a th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}"
+		<a th:href="@{'/admin/ingrediente' + '/' + ${ingrediente.id}}"
 			th:text="${ingrediente.nome}">ingrediente1</a>
 	</li>
 	</ul>
 	</div>
-	<footer><a href="/">Home</a></footer>
+	<footer><a th:href="@{/admin/home}">Home</a></footer>
 </body>
 </html>

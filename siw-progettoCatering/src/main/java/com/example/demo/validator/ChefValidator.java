@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import com.example.demo.model.Buffet;
 import com.example.demo.model.Chef;
 import com.example.demo.service.ChefService;
 
@@ -20,8 +21,10 @@ public class ChefValidator implements Validator{
 	}
 
 	@Override
-	public void validate(Object target, Errors errors) {
-		
+	public void validate(Object o, Errors errors) {
+		if(this.chefService.alreadyExists((Chef)o)) {
+			errors.reject("chef.duplicato");
+		}
 	}
 
 	

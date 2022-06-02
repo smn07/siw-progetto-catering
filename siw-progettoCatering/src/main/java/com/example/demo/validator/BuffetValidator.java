@@ -6,6 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.example.demo.model.Buffet;
+import com.example.demo.model.Piatto;
 import com.example.demo.service.BuffetService;
 
 @Component
@@ -20,8 +21,11 @@ public class BuffetValidator implements Validator{
 	}
 
 	@Override
-	public void validate(Object target, Errors errors) {
-		
+	public void validate(Object o, Errors errors) {
+		if(this.buffetService.alreadyExists((Buffet)o)) {
+			errors.reject("buffet.duplicato");
+		}
 	}
+
 
 }

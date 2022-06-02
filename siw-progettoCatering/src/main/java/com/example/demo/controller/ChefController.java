@@ -2,14 +2,20 @@ package com.example.demo.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.model.Buffet;
 import com.example.demo.model.Chef;
+import com.example.demo.service.BuffetService;
 import com.example.demo.service.ChefService;
 import com.example.demo.validator.ChefValidator;
 
@@ -17,6 +23,9 @@ import com.example.demo.validator.ChefValidator;
 public class ChefController {
 	@Autowired
 	private ChefService chefService;
+	
+	@Autowired
+	private BuffetService buffetService;
 	
 	
 	@Autowired
@@ -60,5 +69,60 @@ public class ChefController {
 		return "/admin/chefs.html";
 	}
 	
+	@GetMapping("/admin/chefForm")
+	public String addChefForm(Model model) {
+		model.addAttribute("chef", new Chef());
+		model.addAttribute("buffets",this.buffetService.findAll());
+		return "/admin/chefForm.html";
+	}
+	
+	@PostMapping("/admin/chef")
+	public String addChef(@Valid @ModelAttribute("chef") Chef chef,BindingResult bindingResult, Model model) {
+
+		this.chefValidator.validate(chef, bindingResult);
+		
+		if (!bindingResult.hasErrors()){// se i dati sono corretti
+			this.chefService.save(chef); // salvo l'oggetto
+			
+			model.addAttribute("chef", chefService.findById(chef.getId()));
+			return "admin/chef.html";
+		} else {
+
+			model.addAttribute("buffets",this.buffetService.findAll());
+			return "/admin/chefForm.html"; // ci sono errori, torna alla form iniziale
+			
+		}
+	}
+	
+	
+	@GetMapping("/admin/modificaChef/{id}")
+	public String modificaChef(@PathVariable("id")Long id, Model model) {
+		model.addAttribute("chef",this.chefService.findById(id));
+		return "/admin/chefFormMod.html";
+	}
+	
+	@PostMapping("/admin/chefMod/{id}")
+	public String modificaChefForm(@PathVariable("id")Long vecchioId,@Valid @ModelAttribute("chef") Chef chef,BindingResult bindingResult, Model model) {
+		
+		if (!bindingResult.hasErrors()){// se i dati sono corretti
+			//this.chefService.save(chef); // salvo l'oggetto
+			
+			Chef vecchioChef = this.chefService.findById(vecchioId);
+			vecchioChef.setId(chef.getId());
+			vecchioChef.setNome(chef.getNome());
+			vecchioChef.setCognome(chef.getCognome());
+			vecchioChef.setNazionalita(chef.getNazionalita());
+			
+			this.chefService.save(vecchioChef);
+			
+			model.addAttribute("chef", vecchioChef);
+			return "/admin/chef.html";
+		} else {
+
+			model.addAttribute("chef",this.chefService.findById(vecchioId));
+			return "admin/chefFormMod.html"; // ci sono errori, torna alla form iniziale
+			
+		}
+	}
 	
 }

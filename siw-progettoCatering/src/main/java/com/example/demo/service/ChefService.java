@@ -3,6 +3,8 @@ package com.example.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,15 @@ public class ChefService {
 	@Transactional
 	public void deleteById(Long id) {
 		this.chefRepository.deleteById(id);
+	}
+	
+	@Transactional
+	public void save(@Valid Chef chef) {
+		this.chefRepository.save(chef);
+	}
+
+	public boolean alreadyExists(Chef c) {
+		return this.chefRepository.existsByNomeAndCognome(c.getNome(),c.getCognome());
 	}
 
 }

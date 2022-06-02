@@ -8,7 +8,8 @@
 	<ul>
 	<li th:each="piatto : ${piatti}">
 		<a th:href="@{'/admin/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto1</a>
-		<a th:href="@{'/admin/cancellaPiatto' + '/' + ${piatto.id}}">cancella</a>
+		<a th:href="@{'/admin/cancellaPiatto' + '/' + ${piatto.id}}" onclick="return confirm('Sei sicuro di eliminare questo piatto?')">cancella</a>
+		<a th:href="@{'/admin/modificaPiatto' + '/' + ${piatto.id}}">modifica</a>
 	</li>
 	</ul>
 	<footer><a href="/admin/home">Home</a></footer>

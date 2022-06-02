@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	</head>
+<body>
+<h1>Modifica il Buffet</h1>
+
+<form th:action="@{'/admin/buffetMod' + '/' + ${buffet.id}}" method="POST" th:object="${buffet}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>	
+	<div>
+		<span>Nome:</span>
+		<span><input type="text" th:field="*{nome}" th:value="buffet.nome"/></span>
+		<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+	</div>
+	<div>
+		<span>Descrizione:</span>
+		<span><input type="text" th:field="*{descrizione}" th:value="buffet.descrizione"/></span>
+		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+	</div>
+	
+	<div>
+		<div><h4>Modifica chef per questo buffet</h4></div>		
+	<div>
+        <div>Seleziona  chef:
+            <select th:field="*{chef}">
+                <option value=""></option>
+                <option th:each="chef : ${chefs}"
+                        th:value="${chef.id}"
+                        th:text="${chef.nome} + ' ' + ${chef.cognome}">
+                </option>
+            </select>
+        </div>
+    </div>
+    
+    <div>
+		<div><h4>Modifica piatti per questo buffet</h4></div>
+		<!--<ul>
+			<li th:each="piatto : ${piatti}">
+				<input type="checkbox" th:field="${buffet.piatti}" th:value="${piatto.id}">
+				<label th:text="${piatto.nome}">piatto</label>
+			</li>
+		</ul>-->
+		
+		<div>Piatti: <input type = 'checkbox' th:field = '*{piatti}'
+			th:each="piatto : ${piatti}"
+			th:text="${piatto.nome}"
+			th:value="${piatto.id}"/></div>
+	</div>
+	
+	<div>
+		<span><button type="submit">Conferma</button></span>
+	</div>
+</form>
+</body>
+</html>

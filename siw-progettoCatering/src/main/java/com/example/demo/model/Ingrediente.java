@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Ingrediente {
@@ -13,8 +14,11 @@ public class Ingrediente {
 	private Long id;
 	
 	@Column(nullable = false)
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String descrizione;
+	@NotBlank
 	private String origine;
 	
 	public Ingrediente() {}

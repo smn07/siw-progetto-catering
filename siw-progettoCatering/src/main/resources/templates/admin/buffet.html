@@ -13,14 +13,24 @@
 	<div>
 		<span th:text="${buffet.descrizione}">descrizione buffet</span>
    	</div>
-	<div>
+	<div th:if="${conditionChef}">
+		<h4>Chef di questo buffet:</h4>
+	<ul>
+	<li th:each="chef : ${buffet.chef}">
+		<a th:href="@{'/admin/chef' + '/' + ${chef.id}}"
+			th:text="${chef.nome} + ' ' + ${chef.cognome}">chef1</a>
+	</li>
+	</ul>
+   	</div>
+	<div th:if="${conditionPiatti}">
+	<h4>Piatti di questo buffet:</h4>
 	<ul>
 	<li th:each="piatto : ${buffet.piatti}">
-		<a th:href="@{'/piatto' + '/' + ${piatto.id}}"
+		<a th:href="@{'/admin/piatto' + '/' + ${piatto.id}}"
 			th:text="${piatto.nome}">piatto1</a>
 	</li>
 	</ul>
 	</div>
-	<footer><a href="/">Home</a></footer>
+	<footer><a th:href="@{/admin/home}">Home</a></footer>
 </body>
 </html>

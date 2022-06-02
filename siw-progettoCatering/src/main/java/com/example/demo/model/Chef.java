@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -10,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 
 
@@ -19,12 +19,15 @@ public class Chef {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String cognome;
+	@NotBlank
 	private String nazionalita;
 	
-	@OneToMany(cascade = {CascadeType.ALL})
-	@JoinColumn(name = "chef")
+	@OneToMany(cascade = {CascadeType.ALL}, mappedBy= "chef")
+	//@JoinColumn(name = "chef")
 	private List<Buffet> buffet;
 	
 	public Chef() {

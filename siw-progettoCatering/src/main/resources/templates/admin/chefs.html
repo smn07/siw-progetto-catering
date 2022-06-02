@@ -7,10 +7,12 @@
 	<h4>Elenco chef</h4>
 	<ul>
 	<li th:each="chef : ${chefs}">
-		<a href="chef.html" th:href="@{'/admin/chef' + '/' + ${chef.id}}" th:text="${chef.nome}">chef1</a>
-		<a th:href="@{'/admin/cancellaChef' + '/' + ${chef.id}}">cancella</a>
+		<a href="chef.html" th:href="@{'/admin/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">chef1</a>
+		<a th:href="@{'/admin/cancellaChef' + '/' + ${chef.id}}" onclick="return confirm('Sei sicuro di eliminare questo chef? Ricorda, verranno eliminati anche i relativi buffet!')">cancella</a>
+		<a th:href="@{'/admin/modificaChef' + '/' + ${chef.id}}">modifica</a>
 	</li>
 	</ul>
 	<footer><a href="/admin/home">Home</a></footer>
 </body>
 </html>
+   

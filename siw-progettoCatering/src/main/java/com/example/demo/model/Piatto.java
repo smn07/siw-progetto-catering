@@ -1,15 +1,14 @@
-package com.example.demo.model;
+	package com.example.demo.model;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+//import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity 
 public class Piatto {
@@ -17,11 +16,13 @@ public class Piatto {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	
+	@NotBlank
 	private String nome;
+	@NotBlank
 	private String descrizione;
 	
-	@OneToMany
-	@JoinColumn(name="ingrediente")
+	@ManyToMany
+	//@JoinColumn(name="ingrediente")
 	private List<Ingrediente> ingredienti;
 	
 	public Piatto() {
@@ -77,7 +78,7 @@ public class Piatto {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Buffet other = (Buffet) obj;
+		Piatto other = (Piatto) obj;
 		return this.getId() == other.getId();
 	}
 	

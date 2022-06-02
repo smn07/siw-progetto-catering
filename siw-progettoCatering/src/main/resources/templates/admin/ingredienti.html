@@ -6,10 +6,11 @@
 <body>
 	<h4>Elenco ingredienti</h4>
 	<ul>
-	<li th:each="ingrediente : ${ingredienti}">
-		<a th:href="@{'/admin/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
-		<a th:href="@{'/admin/cancellaIngrediente' + '/' + ${ingrediente.id}}">cancella</a>
-	</li>
+		<li th:each="ingrediente : ${ingredienti}">
+			<a th:href="@{'/admin/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
+			<a th:href="@{'/admin/cancellaIngrediente' + '/' + ${ingrediente.id}}" onclick="return confirm('Sei sicuro di eliminare questo ingrediente?')">cancella</a>
+			<a th:href="@{'/admin/modificaIngrediente' + '/' + ${ingrediente.id}}">modifica</a>
+		</li>
 	</ul>
 	<footer><a href="/admin/home">Home</a></footer>
 </body>

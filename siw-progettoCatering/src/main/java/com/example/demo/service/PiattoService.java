@@ -3,6 +3,8 @@ package com.example.demo.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -30,5 +32,14 @@ public class PiattoService {
 	@Transactional
 	public void deleteById(Long id) {
 		this.piattoRepository.deleteById(id);
+	}
+
+	@Transactional
+	public void save(@Valid Piatto piatto) {
+		this.piattoRepository.save(piatto);
+	}
+
+	public boolean alreadyExists(Piatto p) {
+		return this.piattoRepository.existsByNome(p.getNome());
 	}
 }

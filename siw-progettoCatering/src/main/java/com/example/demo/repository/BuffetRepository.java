@@ -6,4 +6,6 @@ import com.example.demo.model.Buffet;
 
 public interface BuffetRepository extends CrudRepository<Buffet, Long> {
 
+	boolean existsByNome(String string);
+
 }

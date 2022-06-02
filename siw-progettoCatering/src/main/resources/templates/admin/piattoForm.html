@@ -2,12 +2,11 @@
 <html>
 <head>
 	<meta charset="UTF-8"/>
-	<title>Form Ingrediente</title>
 	</head>
 <body>
-<h1>Aggiungi un ingrediente</h1>
+<h1>Aggiungi un piatto</h1>
 
-<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
+<form th:action="@{/admin/piatto}" method="POST" th:object="${piatto}">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>	
@@ -22,9 +21,13 @@
 		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
 	</div>
 	<div>
-		<span>Origine:</span>
-		<span><input type="text" th:field="*{origine}"/></span>
-		<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>
+		<div><h4>Aggiungi ingredienti per questo nuovo piatto</h4></div>
+		<ul>
+			<li th:each="ingrediente : ${ingredienti}">
+				<input type="checkbox" th:field="${piatto.ingredienti}" th:value="${ingrediente.id}">
+				<label th:text="${ingrediente.nome}">ingrediente</label>
+			</li>
+		</ul>
 	</div>
 	<div>
 		<span><button type="submit">Conferma</button></span>

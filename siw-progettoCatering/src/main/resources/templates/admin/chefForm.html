@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	</head>
+<body>
+<h1>Aggiungi uno Chef</h1>
+
+<form th:action="@{/admin/chef}" method="POST" th:object="${chef}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>	
+	<div>
+		<span>Nome:</span>
+		<span><input type="text" th:field="*{nome}"/></span>
+		<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+	</div>
+	<div>
+		<span>Cognome:</span>
+		<span><input type="text" th:field="*{cognome}"/></span>
+		<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+	</div>
+	
+	<div>
+		<span>Nazionalità:</span>
+		<span><input type="text" th:field="*{nazionalita}"/></span>
+		<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazonalita}"></span>
+	</div>
+	
+	<!--<div>
+		<div><h4>Aggiungi buffets per questo nuovo chef</h4></div>
+		<ul>
+			<li th:each="buffet : ${buffets}">
+				<input type="checkbox" th:field="${chef.buffet}" th:value="${buffet.id}">
+				<label th:text="${buffet.nome}">buffet</label>
+			</li>
+		</ul>
+	</div>-->
+	<div>
+		<span><button type="submit">Conferma</button></span>
+	</div>
+</form>
+</body>
+</html>
