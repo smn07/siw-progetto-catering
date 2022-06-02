@@ -15,11 +15,10 @@
    	</div>
 	<div><ul>
 	<li th:each="ingrediente: ${piatto.ingredienti}">
-		<a
-			th:href="@{'/ingredente' + '/' + ${ingrediente.id}}"
+		<a th:href="@{'/user/ingredente' + '/' + ${ingrediente.id}}"
 			th:text="${ingrediente.nome}">ingrediente1</a>
 	</li>
 	</ul></div>
-	<footer><a href="/">Home</a></footer>
+	<footer><a th:href="@{/user/home}">Home</a></footer>
 </body>
 </html>

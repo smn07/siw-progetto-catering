@@ -27,18 +27,18 @@ public class IngredienteController {
 	@Autowired
 	private IngredienteValidator ingredienteValidator;
 	
-	@GetMapping("/ingredienti")
+	@GetMapping("/user/ingredienti")
 	public String getIngredienti(Model model) {
 		List<Ingrediente> ingredienti = ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
-		return "ingredienti.html";
+		return "/user/ingredienti.html";
 	}
 	
-	@GetMapping("/ingrediente/{id}")
+	@GetMapping("/user/ingrediente/{id}")
 	public String getChef(@PathVariable("id")Long id, Model model) {
 		Ingrediente ingrediente = ingredienteService.findById(id);
 		model.addAttribute("ingrediente", ingrediente);
-		return "ingrediente.html";
+		return "/user/ingrediente.html";
 	}
 	
 	@GetMapping("/admin/ingredienti")

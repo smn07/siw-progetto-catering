@@ -31,7 +31,7 @@ public class HomeController {
 	@Autowired
 	private IngredienteService ingredienteService;
 	
-	@GetMapping("/home")
+	@GetMapping("/user/home")
 	public String getAll(Model model) {
 		List<Chef> chefs = chefService.findAll();
 		List<Buffet> buffets = buffetService.findAll();
@@ -42,7 +42,7 @@ public class HomeController {
 		model.addAttribute("buffets", buffets);
 		model.addAttribute("piatti", piatti);
 		model.addAttribute("ingredienti", ingredienti);
-		return "home.html";
+		return "/user/home.html";
 	}
 	
 	@GetMapping("/admin/home")

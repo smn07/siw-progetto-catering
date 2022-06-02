@@ -34,18 +34,18 @@ public class PiattoController {
 	@Autowired
 	private PiattoValidator piattoValidator;
 	
-	@GetMapping("/piatti")
+	@GetMapping("/user/piatti")
 	public String getPiatti(Model model) {
 		List<Piatto> piatti = piattoService.findAll();
 		model.addAttribute("piatti", piatti);
-		return "piatti.html";
+		return "/user/piatti.html";
 	}
 	
-	@GetMapping("/piatto/{id}")
+	@GetMapping("/user/piatto/{id}")
 	public String getChef(@PathVariable("id")Long id, Model model) {
 		Piatto piatto = piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
-		return "piatto.html";
+		return "/user/piatto.html";
 	}
 	
 	@GetMapping("/admin/piatti")

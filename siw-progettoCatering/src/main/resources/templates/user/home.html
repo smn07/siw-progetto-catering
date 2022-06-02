@@ -1,6 +1,6 @@
 <!--<!DOCTYPE html> 
 <html xmlns:th="http://www.thymeleaf.org">
-        <link rel="stylesheet" href="home.css">
+        <link rel="stylesheet" href="/css/home.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
     </head>    
@@ -8,31 +8,31 @@
     		<h1>Catering</h1>
     		<nav>
     		<ul>
-    		    <li><a th:href="@{/chefs}">Chef</a>
+    		    <li><a th:href="@{/user/chefs}">Chef</a>
     		    	<ul>
 						<li th:each="chef : ${chefs}">
-						<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" th:text="${chef.nome}">chef</a>
+						<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome}">chef</a>
 						</li>
 					</ul>
 				</li>
-                <li><a th:href="@{/buffets}">Buffet</a>
+                <li><a th:href="@{/user/buffets}">Buffet</a>
                    	<ul>
 						<li th:each="buffet : ${buffets}">
-						<a href="buffet.html" th:href="@{'/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet</a>
+						<a th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet</a>
 						</li>
 					</ul>
                 </li>
-                <li><a th:href="@{/piatti}">Piatti</a>
+                <li><a th:href="@{/user/piatti}">Piatti</a>
                     <ul>
 						<li th:each="piatto : ${piatti}">
-						<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
+						<a th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
 						</li>
 					</ul>
                 </li>
-                <li><a th:href="@{/ingredienti}">Ingredienti</a>
+                <li><a th:href="@{/user/ingredienti}">Ingredienti</a>
                     <ul>
 						<li th:each="ingrediente : ${ingredienti}">
-						<a href="ingrediente.html" th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
+						<a th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
 						</li>
 					</ul>
                 </li>
@@ -52,31 +52,31 @@
 		<div class="h"><h1>CATERING</h1>
 			<div id="menu">
 				<ul>
-					<li><a th:href="@{/chefs}">Chef</a>
+					<li><a th:href="@{/user/chefs}">Chef</a>
 						<ul>
 							<li th:each="chef : ${chefs}">
-							<a href="chef.html" th:href="@{'/chef' + '/' + ${chef.id}}" th:text="${chef.nome}">chef</a>
+							<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome}">chef</a>
 							</li>
 						</ul>
 					</li>
-					<li><a th:href="@{/buffets}">Buffet</a>
+					<li><a th:href="@{/user/buffets}">Buffet</a>
 						   <ul>
 							<li th:each="buffet : ${buffets}">
-							<a href="buffet.html" th:href="@{'/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet</a>
+							<a th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet</a>
 							</li>
 						</ul>
 					</li>
-					<li><a th:href="@{/piatti}">Piatti</a>
+					<li><a th:href="@{/user/piatti}">Piatti</a>
 						<ul>
 							<li th:each="piatto : ${piatto}">
-							<a href="piatto.html" th:href="@{'/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
+							<a th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
 							</li>
 						</ul>
 					</li>
-					<li><a th:href="@{/ingredienti}">Ingredienti</a>
+					<li><a th:href="@{/user/ingredienti}">Ingredienti</a>
 						<ul>
 							<li th:each="ingrediente : ${ingredienti}">
-							<a href="ingrediente.html" th:href="@{'/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
+							<a th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
 							</li>
 						</ul>
 					</li>

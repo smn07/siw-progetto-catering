@@ -36,18 +36,18 @@ public class BuffetController {
 	private BuffetValidator buffetValidator;
 
 	
-	@GetMapping("/buffets")
+	@GetMapping("/user/buffets")
 	public String getBuffets(Model model) {
 		List<Buffet> buffets = this.buffetService.findAll();
 		model.addAttribute("buffets", buffets);
-		return "buffets.html";
+		return "/user/buffets.html";
 	}
 	
-	@GetMapping("/buffet/{id}")
+	@GetMapping("/user/buffet/{id}")
 	public String getBuffet(@PathVariable("id")Long id, Model model) {
 		Buffet buffet = this.buffetService.findById(id);
 		model.addAttribute("buffet", buffet);
-		return "buffet.html";
+		return "/user/buffet.html";
 	}
 	
 	@GetMapping("/admin/buffets")

@@ -31,19 +31,19 @@ public class ChefController {
 	@Autowired
 	private ChefValidator chefValidator;
 	
-	@GetMapping("/chefs")
+	@GetMapping("/user/chefs")
 	public String getChefs(Model model) {
 		List<Chef> chefs = chefService.findAll();
 		model.addAttribute("chefs", chefs);
-		return "chefs.html";
+		return "/user/chefs.html";
 	}
 	
-	@GetMapping("/chef/{id}")
+	@GetMapping("/user/chef/{id}")
 	public String getChef(@PathVariable("id")Long id, Model model) {
 		Chef chef = chefService.findById(id);
 		
 		model.addAttribute("chef", chef);
-		return "chef.html";
+		return "/user/chef.html";
 	}
 	
 	@GetMapping("/admin/chefs")

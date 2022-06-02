@@ -18,11 +18,10 @@
    	</div>
 	<div><ul>
 	<li th:each="buffet : ${chef.buffet}">
-		<a href="buffet.html"
-			th:href="@{'/buffet' + '/' + ${buffet.id}}"
+		<a th:href="@{'/user/buffet' + '/' + ${buffet.id}}"
 			th:text="${buffet.nome}">buffet1</a>
 	</li>
 	</ul></div>
-	<footer><a href="/">Home</a></footer>
+	<footer><a th:href="@{/user/home}">Home</a></footer>
 </body>
 </html>
