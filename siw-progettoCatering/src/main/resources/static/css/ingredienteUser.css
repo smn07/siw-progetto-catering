@@ -70,10 +70,10 @@ a:hover {
 }
 
 .sfondo {
-    height: 159vh;
+    height: 119vh;
     background-size: cover;
     position: relative;
-    background-image: url("/images/sfondoCater2.jpg");
+    background-image: url("/images/ingredienteSfondo.jpg");
 }
 
 p {
@@ -81,77 +81,20 @@ p {
     font-size: medium;
     text-align: center;
 }
-.immHome {
-    margin-top: 5%;
+
+h3 {
+    color: orangered;
     text-align: center;
-    position: relative;
+    margin-top: 4%;
+    font-size: 182%;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: black;
-  }
-  
-  .immHome:hover .overlay {
-    opacity: 1;
-  }
-  
-  .text {
+h4 {
     color: orangered;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     text-align: center;
-  }
-
-  .immHome2 {
-    margin-top: 5%;
-    text-align: center;
-    position: relative;
+    margin-top: 4%;
+    font-size: 127%;
+    border-top: solid;
+    border-top-color: aliceblue;
+    padding-top: 3%;
 }
-
-.overlay2 {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: black;
-  }
-  
-  .immHome2:hover .overlay2 {
-    opacity: 1;
-  }
-  
-  .text2 {
-    color: orangered;
-    font-size: 20px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  h3{
-      color: orangered;
-      text-align: center;
-  }

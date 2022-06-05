@@ -16,12 +16,12 @@
 					<li>
 						<a th:href="@{/user/home}" style="color: orangered;">Home</a>
 					</li>
-					<li class="dropdown"><a>Chef</a>
-						<ul>
+					<li class="dropdown"><a th:href="@{/user/chefs}">Chef</a>
+						<!--<ul>
 							<li th:each="chef : ${chefs}">
 							<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">chef</a>
 							</li>
-						</ul>
+						</ul>-->
 					</li>
 					<li class="dropdown"><a>Buffet</a>
 						   <ul>
@@ -30,13 +30,13 @@
 							</li>
 						</ul>
 					</li>
-					<li class="dropdown"><a>Piatti</a>
+					<!--<li class="dropdown"><a>Piatti</a>
 						<ul>
 							<li th:each="piatto : ${piatti}">
 							<a th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
 							</li>
 						</ul>
-					</li>
+					</li>-->
 					<li class="dropdown"><a>Ingredienti</a>
 						<ul>
 							<li th:each="ingrediente : ${ingredienti}">
@@ -49,29 +49,40 @@
 		</header>
 	</div>
 
+	<div>
+		<h3 th:text="${buffet.nome}">nome buffet</h3>
+   	</div>
+	<div>
+		<p th:text="${buffet.descrizione}" style="margin-top: -3%;">descrizione buffet</p>
+   	</div>
+	<div class="chefbuffet">
+		<span style="color: orangered;">A cura dello chef:</span>
+		<span><a style="font-size: medium;" th:href="@{'/user/chef' + '/' + ${buffet.chef.id}}" th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">chef buffet</a></span>
+   	</div>
+	<div>
+		<ul>
+		<li th:each="piatto: ${buffet.piatti}" style="margin-left: -4%;">
 
-	<div>
-		<h4>Dettagli buffet</h4>
+			<h4 th:text="${piatto.nome}"></h4>
+			<div>	
+				<ul class="ulIng">
+					<li th:each="ing : ${piatto.ingredienti}">
+					<a th:href="@{'/user/ingrediente' + '/' + ${ing.id}}" th:text="${ing.nome}" style="font-size: medium;">nome ingrediente</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="piatto">
+
+				<img th:src="${piatto.img}" alt="" style="width: 49%; height: 60%; margin-top: 2%;">
+				<div class="overlay">
+					<div class="text"><p th:text="${piatto.descrizione}">descrizione piatto</p></div>
+				</div>
+			</div>
+		</li>
+		</ul>
 	</div>
-	<div>
-		<p th:text="${buffet.nome}">nome buffet</p>
-   	</div>
-	<div>
-		<p th:text="${buffet.descrizione}">descrizione buffet</p>
-   	</div>
-	<div>
-		<a th:href="@{'/user/chef' + '/' + ${buffet.chef.id}}" th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">chef buffet</a>
-   	</div>
-	<div>
-	<ul>
-	<li th:each="piatto: ${buffet.piatti}">
-		<a th:href="@{'/user/piatto' + '/' + ${piatto.id}}"
-			th:text="${piatto.nome}">piatto1</a>
-	</li>
-	</ul></div>
-	<div>
-		<span th:text="${buffet.chef.nome}">chef buffet</span>
-   	</div>
+
 		<footer>
 			<p>Simone Di Ienno | sim.diienno1@stud.uniroma3.it</p>
 		</footer>

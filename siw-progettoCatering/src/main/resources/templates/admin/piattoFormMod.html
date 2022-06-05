@@ -20,6 +20,11 @@
 		<span><input type="text" th:field="*{descrizione}" th:value="piatto.descrizione"/></span>
 		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
 	</div>
+	
+	<div>
+		<span>Link immagine piatto:</span>
+		<span><input type="text" th:field="*{img}"/></span>
+	</div>
 		
     
     <div>

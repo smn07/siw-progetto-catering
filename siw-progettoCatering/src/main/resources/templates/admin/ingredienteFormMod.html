@@ -21,6 +21,12 @@
 		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
 	</div>
 	
+	</div>
+		<div>
+		<span>Link immagine ingrediente:</span>
+		<span><input type="text" th:field="*{img}"/></span>
+	</div>
+	
 	<div>
 		<span>Origine:</span>
 		<span><input type="text" th:field="*{origine}" th:value="ingrediente.origine"/></span>

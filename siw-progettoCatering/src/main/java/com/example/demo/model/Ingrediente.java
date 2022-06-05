@@ -24,12 +24,15 @@ public class Ingrediente {
 	@NotBlank
 	private String origine;
 	
+	private String img;
+	
 	public Ingrediente() {}
 	
-	public Ingrediente(String nome, String descrizione, String origine) {
+	public Ingrediente(String nome, String descrizione, String origine, String img) {
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.origine = origine;
+		this.img = img;
 	}
 
 	public Long getId() {
@@ -65,6 +68,14 @@ public class Ingrediente {
 	}
 	
 
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	@Override
 	public int hashCode() {
 		return this.getNome().hashCode() + 31;
@@ -76,7 +87,7 @@ public class Ingrediente {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Buffet other = (Buffet) obj;
+		Ingrediente other = (Ingrediente) obj;
 		return this.getNome().equals(other.getNome());
 	}
 }

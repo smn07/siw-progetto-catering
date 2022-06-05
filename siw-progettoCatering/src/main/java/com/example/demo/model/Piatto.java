@@ -22,6 +22,8 @@ public class Piatto {
 	@NotBlank
 	private String descrizione;
 	
+	private String img;
+	
 	@ManyToMany
 	private List<Ingrediente> ingredienti;
 	
@@ -29,10 +31,11 @@ public class Piatto {
 		//this.ingredienti = new ArrayList<Ingrediente>();
 	}
 
-	public Piatto(String nome, String descrizione, List<Ingrediente> ingredienti) {
+	public Piatto(String nome, String descrizione, List<Ingrediente> ingredienti,String img) {
 		this.nome = nome;
 		this.descrizione = descrizione;
 		this.ingredienti = ingredienti;
+		this.img = img;
 	}
 
 	public Long getId() {
@@ -65,6 +68,15 @@ public class Piatto {
 
 	public void setIngredienti(List<Ingrediente> ingredienti) {
 		this.ingredienti = ingredienti;
+	}
+	
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	@Override

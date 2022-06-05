@@ -70,10 +70,10 @@ a:hover {
 }
 
 .sfondo {
-    height: 100vh;
+    height: 77vh;
     background-size: cover;
     position: relative;
-    background-image: url("/images/sfondoCater.jpg");
+    background-image: url("/images/buffetSfondo.jpg");
 }
 
 p {
@@ -82,6 +82,65 @@ p {
     text-align: center;
 }
 
-h4 {
-    color: aliceblue;
+h3 {
+    color: orangered;
+    text-align: center;
+    margin-top: 4%;
+    font-size: 182%;
 }
+
+h4 {
+    color: orangered;
+    text-align: center;
+    margin-top: 4%;
+    font-size: 127%;
+    border-top: solid;
+    border-top-color: aliceblue;
+    padding-top: 3%;
+}
+
+.piatto {
+    margin-top: 5%;
+    text-align: center;
+    position: relative;
+
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: black;
+  }
+  
+  .piatto:hover .overlay {
+    opacity: 1;
+  }
+  
+  .text {
+    color: orangered;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  .chefbuffet {
+      text-align: center;
+  }
+
+  .ulIng {
+    list-style-type: none;
+    margin-left: -4%;
+    text-align: center;
+  }

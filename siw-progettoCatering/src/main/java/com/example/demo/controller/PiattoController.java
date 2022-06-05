@@ -119,6 +119,7 @@ public class PiattoController {
 			vecchioPiatto.setNome(piatto.getNome());
 			vecchioPiatto.setDescrizione(piatto.getDescrizione());
 			vecchioPiatto.setIngredienti(piatto.getIngredienti());
+			vecchioPiatto.setImg(piatto.getImg());
 			
 			this.piattoService.save(vecchioPiatto);
 			model.addAttribute("piatto", piatto);

@@ -1,21 +1,71 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8"/>
-	</head>
+	<head>
+        <link rel="stylesheet" href="/css/ingredienteUser.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+    </head> 
 <body>
-	<div>
-		<h4>Dettagli ingrediente</h4>
+
+	<div class="sfondo">
+		<header class="header-flex">
+				<img src="/images/logoChef.png" alt="Logo" style="width: 70%; height: 42%; margin: 5%;">
+
+			<div class="nav">
+				<ul>
+					<li>
+						<a th:href="@{/user/home}" style="color: orangered;">Home</a>
+					</li>
+					<li class="dropdown"><a th:href="@{/user/chefs}">Chef</a>
+						<!--<ul>
+							<li th:each="chef : ${chefs}">
+							<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">chef</a>
+							</li>
+						</ul>-->
+					</li>
+					<li class="dropdown"><a>Buffet</a>
+						   <ul>
+							<li th:each="buffet : ${buffets}">
+							<a th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet</a>
+							</li>
+						</ul>
+					</li>
+					<!--<li class="dropdown"><a>Piatti</a>
+						<ul>
+							<li th:each="piatto : ${piatti}">
+							<a th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
+							</li>
+						</ul>
+					</li>-->
+					<li class="dropdown"><a>Ingredienti</a>
+						<ul>
+							<li th:each="ingrediente : ${ingredienti}">
+							<a th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</header>
 	</div>
-	<div>
-		<span th:text="${ingrediente.nome}">nome ingrediente</span>
+
+	<div style="margin-top: 0%;">
+		<h3 th:text="${ingrediente.nome}">nome ingrediente</h3>
    	</div>
 	<div>
-		<span th:text="${ingrediente.descrizione}">desc ingrediente</span>
+		<p th:text="${ingrediente.descrizione}" style="margin-top: -3%;">descrizione ingrediente</p>
    	</div>
-	<div>
-		<span th:text="${ingrediente.origine}">origine ingrediente</span>
-   	</div>
-	<footer><a th:href="@{/user/home}">Home</a></footer>
+	<div style="text-align: center;">
+		<span style="color: orangered;">Origine ingrediente:</span>
+		<span th:text="${ingrediente.origine}" style="margin-top: -3%; color: aliceblue;">Origine ingrediente</p></span>
+	</div>
+
+	<div style="text-align: center; margin-top: 5%;">
+		<img th:src="${ingrediente.img}" alt="" style="width: 49%; height: 52%; margin-top: 2%;">
+	</div>
+	
+<footer>
+	<p>Simone Di Ienno | sim.diienno1@stud.uniroma3.it</p>
+</footer>
 </body>
 </html>

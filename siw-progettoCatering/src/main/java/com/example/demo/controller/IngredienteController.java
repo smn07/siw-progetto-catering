@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,15 +13,29 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.demo.model.Buffet;
+import com.example.demo.model.Chef;
 import com.example.demo.model.Ingrediente;
 import com.example.demo.model.Piatto;
+import com.example.demo.service.BuffetService;
+import com.example.demo.service.ChefService;
 import com.example.demo.service.IngredienteService;
+import com.example.demo.service.PiattoService;
 import com.example.demo.validator.IngredienteValidator;
 
 @Controller
 public class IngredienteController {
 	@Autowired
 	private IngredienteService ingredienteService;
+	
+	@Autowired
+	private ChefService chefService;
+	
+	@Autowired
+	private BuffetService buffetService;
+	
+	@Autowired
+	private PiattoService piattoService;
 	
 	@Autowired
 	private IngredienteValidator ingredienteValidator;
@@ -38,6 +51,15 @@ public class IngredienteController {
 	public String getChef(@PathVariable("id")Long id, Model model) {
 		Ingrediente ingrediente = ingredienteService.findById(id);
 		model.addAttribute("ingrediente", ingrediente);
+		List<Chef> chefs = chefService.findAll();
+		List<Buffet> buffets = buffetService.findAll();
+		List<Piatto> piatti = piattoService.findAll();
+		List<Ingrediente> ingredienti = ingredienteService.findAll();
+		
+		model.addAttribute("chefs", chefs);
+		model.addAttribute("buffets", buffets);
+		model.addAttribute("piatti", piatti);
+		model.addAttribute("ingredienti", ingredienti);
 		return "/user/ingrediente.html";
 	}
 	
@@ -99,7 +121,7 @@ public class IngredienteController {
 			vecchioIngrediente.setNome(ingrediente.getNome());
 			vecchioIngrediente.setDescrizione(ingrediente.getDescrizione());
 			vecchioIngrediente.setOrigine(ingrediente.getOrigine());
-			
+			vecchioIngrediente.setImg(ingrediente.getImg());
 			this.ingredienteService.save(vecchioIngrediente);
 			
 			model.addAttribute("ingrediente", vecchioIngrediente);

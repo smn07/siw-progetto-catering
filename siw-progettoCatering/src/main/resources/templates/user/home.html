@@ -15,12 +15,12 @@
 					<li>
 						<a th:href="@{/user/home}" style="color: orangered;">Home</a>
 					</li>
-					<li class="dropdown"><a>Chef</a>
-						<ul>
+					<li class="dropdown"><a th:href="@{/user/chefs}">Chef</a>
+						<!--<ul>
 							<li th:each="chef : ${chefs}">
 							<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">chef</a>
 							</li>
-						</ul>
+						</ul>-->
 					</li>
 					<li class="dropdown"><a>Buffet</a>
 						   <ul>
@@ -29,13 +29,13 @@
 							</li>
 						</ul>
 					</li>
-					<li class="dropdown"><a>Piatti</a>
+					<!--<li class="dropdown"><a>Piatti</a>
 						<ul>
 							<li th:each="piatto : ${piatti}">
 							<a th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
 							</li>
 						</ul>
-					</li>
+					</li>-->
 					<li class="dropdown"><a>Ingredienti</a>
 						<ul>
 							<li th:each="ingrediente : ${ingredienti}">
