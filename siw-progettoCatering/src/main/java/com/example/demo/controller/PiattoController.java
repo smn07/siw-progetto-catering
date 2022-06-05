@@ -71,6 +71,7 @@ public class PiattoController {
 			b.getPiatti().remove(piatto);
 			this.buffetService.save(b);
 		}
+		
 		this.piattoService.deleteById(id);
 		model.addAttribute("piatti",this.piattoService.findAll());
 		return "/admin/piatti.html";

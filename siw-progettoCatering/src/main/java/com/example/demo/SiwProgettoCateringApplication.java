@@ -36,44 +36,69 @@ public class SiwProgettoCateringApplication /*implements CommandLineRunner*/{
 		SpringApplication.run(SiwProgettoCateringApplication.class, args);
 	}
 
-	/*@Override
+/*	@Override
 	public void run(String... args) throws Exception {
 	
-		Buffet roma = new Buffet();
-		roma.setNome("Buffet cucina romana");
-		roma.setDescrizione("cucina tipica romana!");
+		Buffet carne = new Buffet();
+		carne.setNome("Buffet Carne");
+		carne.setDescrizione("Buffet costituito da piatti di montagna con carne deliziosa e di alta qualità.");
 		
 		//roma.setImg("roma.jpg");
-		Ingrediente uovo = new Ingrediente();
-		uovo.setNome("uovo");
+		Ingrediente pepeNero = new Ingrediente();
+		pepeNero.setNome("Pepe nero");
+		Ingrediente olio = new Ingrediente();
+		pepeNero.setNome("Olio extra vergine di oliva");
 		List<Ingrediente> ingredienti = new LinkedList<Ingrediente>();
-		ingredienti.add(uovo);
+		ingredienti.add(pepeNero);
+		ingredienti.add(olio);
 		
 		Piatto p = new Piatto();
-		p.setNome("carbonara");
+		p.setNome("Bistecca alla fiorentina");
 		p.setIngredienti(ingredienti);
 		List<Piatto> piatti = new LinkedList<Piatto>();
 		piatti.add(p);
-		roma.setPiatti(piatti);
+		carne.setPiatti(piatti);
+		
 		Chef chef = new Chef();
-		chef.setNome("chef");
-		chef.setCognome("cognome chef");
+		chef.setNome("Simone");
+		chef.setCognome("Di Ienno");
 		chef.setNazionalita("Italia");
-		roma.setChef(chef);
+		carne.setChef(chef);
+		
 		List<Buffet> buffet = new LinkedList<Buffet>();
-		buffet.add(roma);
-		Buffet napoli = new Buffet();
-		napoli.setNome("Buffet Napoli");
+		buffet.add(carne);
+		
+		Buffet roma = new Buffet();
+		roma.setNome("Cucina Romana");
 		//napoli.setImg("napoli.jpg");
-		napoli.setChef(chef);
-		buffet.add(napoli);
+		roma.setChef(chef);
+		buffet.add(roma);
 		chef.setBuffet(buffet);
+		Ingrediente guanciale = new Ingrediente();
+		pepeNero.setNome("Guanciale");
+		Ingrediente uovo = new Ingrediente();
+		pepeNero.setNome("Uovo");
+		List<Ingrediente> ingredienti1 = new LinkedList<Ingrediente>();
+		ingredienti1.add(guanciale);
+		ingredienti1.add(uovo);
+		Piatto p1 = new Piatto();
+		p1.setNome("Carbonara");
+		p1.setIngredienti(ingredienti1);
+		List<Piatto> piatti1 = new LinkedList<Piatto>();
+		piatti.add(p1);
+		roma.setPiatti(piatti1);
+		
+		
+		ingredienteRepository.save(pepeNero);
+		ingredienteRepository.save(olio);
+		ingredienteRepository.save(guanciale);
 		ingredienteRepository.save(uovo);
 		chefRepository.save(chef);
 		piattoRepository.save(p);
-		buffetRepository.save(roma);
+		piattoRepository.save(p1);
+		buffetRepository.save(carne);
 		
-		buffetRepository.save(napoli);
+		buffetRepository.save(roma);
 		
 		
 		Buffet sushi = new Buffet();
@@ -105,8 +130,5 @@ public class SiwProgettoCateringApplication /*implements CommandLineRunner*/{
 		buffetRepository.save(sushi);
 		
 		buffetRepository.save(veg);
-
-
-		
 	}*/
 }

@@ -15,12 +15,7 @@
    	</div>
 	<div th:if="${conditionChef}">
 		<h4>Chef di questo buffet:</h4>
-	<ul>
-	<li th:each="chef : ${buffet.chef}">
-		<a th:href="@{'/admin/chef' + '/' + ${chef.id}}"
-			th:text="${chef.nome} + ' ' + ${chef.cognome}">chef1</a>
-	</li>
-	</ul>
+    <a th:href="'/admin/chef' + '/' + ${buffet.chef.id}" th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}">chef buffet</a>
    	</div>
 	<div th:if="${conditionPiatti}">
 	<h4>Piatti di questo buffet:</h4>

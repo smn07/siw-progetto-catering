@@ -26,7 +26,6 @@ public class Buffet {
 	private String descrizione;
 	
 	@ManyToMany(cascade = {CascadeType.PERSIST})
-	//@JoinColumn(name = "buffet_id")
 	private List<Piatto> piatti;
 	
 	@ManyToOne

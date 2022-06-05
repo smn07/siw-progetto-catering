@@ -1,79 +1,42 @@
-<!--<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html xmlns:th="http://www.thymeleaf.org">
+	<head>
         <link rel="stylesheet" href="/css/home.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
     </head>    
     <body>
-    		<h1>Catering</h1>
-    		<nav>
-    		<ul>
-    		    <li><a th:href="@{/user/chefs}">Chef</a>
-    		    	<ul>
-						<li th:each="chef : ${chefs}">
-						<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome}">chef</a>
-						</li>
-					</ul>
-				</li>
-                <li><a th:href="@{/user/buffets}">Buffet</a>
-                   	<ul>
-						<li th:each="buffet : ${buffets}">
-						<a th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet</a>
-						</li>
-					</ul>
-                </li>
-                <li><a th:href="@{/user/piatti}">Piatti</a>
-                    <ul>
-						<li th:each="piatto : ${piatti}">
-						<a th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
-						</li>
-					</ul>
-                </li>
-                <li><a th:href="@{/user/ingredienti}">Ingredienti</a>
-                    <ul>
-						<li th:each="ingrediente : ${ingredienti}">
-						<a th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
-						</li>
-					</ul>
-                </li>
-            </ul>
-            </nav>    
-    </body>
-</html>-->
+		<div class="sfondo">
+		<header class="header-flex">
+				<img src="/images/logoChef.png" alt="Logo" style="width: 70%; height: 42%; margin: 5%;">
 
-
-<!DOCTYPE html> 
-<html xmlns:th="http://www.thymeleaf.org">
-        <link rel="stylesheet" href="home.css">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
-    </head>    
-    <body>
-		<div class="h"><h1>CATERING</h1>
-			<div id="menu">
+			<div class="nav">
 				<ul>
-					<li><a th:href="@{/user/chefs}">Chef</a>
+					<li>
+						<a th:href="@{/user/home}" style="color: orangered;">Home</a>
+					</li>
+					<li class="dropdown"><a>Chef</a>
 						<ul>
 							<li th:each="chef : ${chefs}">
-							<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome}">chef</a>
+							<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">chef</a>
 							</li>
 						</ul>
 					</li>
-					<li><a th:href="@{/user/buffets}">Buffet</a>
+					<li class="dropdown"><a>Buffet</a>
 						   <ul>
 							<li th:each="buffet : ${buffets}">
 							<a th:href="@{'/user/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet</a>
 							</li>
 						</ul>
 					</li>
-					<li><a th:href="@{/user/piatti}">Piatti</a>
+					<li class="dropdown"><a>Piatti</a>
 						<ul>
-							<li th:each="piatto : ${piatto}">
+							<li th:each="piatto : ${piatti}">
 							<a th:href="@{'/user/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto</a>
 							</li>
 						</ul>
 					</li>
-					<li><a th:href="@{/user/ingredienti}">Ingredienti</a>
+					<li class="dropdown"><a>Ingredienti</a>
 						<ul>
 							<li th:each="ingrediente : ${ingredienti}">
 							<a th:href="@{'/user/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
@@ -82,6 +45,37 @@
 					</li>
 				</ul>
 			</div>
+		</header>
 		</div>
+		<main>
+			<p style="margin-top: 13%;">
+				<span style="color: orangered;">Catering Siw.</span> Inizia ad esplorare chef, buffet, piatti e i relativi ingredienti.
+			</p>
+			<p style="margin-bottom: 11%;">
+				Per maggiori informazioni, contattaci!
+			</p>
+
+			<div class="immHome">
+				<img src="/images/immagineHome.jpg" alt="" style="width: 49%; height: 60%;">
+				<div class="overlay">
+					<div class="text">Dal 2000, coltiviamo il nostro lavoro con passione e dedizione.</div>
+				</div>
+			</div>
+
+			<p style="margin-top: 13%;">
+				Siamo situati in <span style="color: orangered;">Via Roma snc</span>.
+			</p>
+
+			<div class="immHome2" style="margin-top: 11%;">
+				<img src="/images/immagineHome2.jpg" alt="" style="width: 49%; height: 60%;">
+				<div class="overlay2">
+					<div class="text2">Offriamo buffet di varie tipologie, non esitare a contattarci tramite posta elettronica!</div>
+			</div>
+			</div>
+		</main>
+
+		<footer>
+			<p>Simone Di Ienno | sim.diienno1@stud.uniroma3.it</p>
+		</footer>
     </body>
 </html>

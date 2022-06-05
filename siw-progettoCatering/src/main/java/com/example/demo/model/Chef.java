@@ -27,7 +27,6 @@ public class Chef {
 	private String nazionalita;
 	
 	@OneToMany(cascade = {CascadeType.ALL}, mappedBy= "chef")
-	//@JoinColumn(name = "chef")
 	private List<Buffet> buffet;
 	
 	public Chef() {
