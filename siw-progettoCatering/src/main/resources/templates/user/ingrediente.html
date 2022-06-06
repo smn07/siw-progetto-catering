@@ -16,12 +16,12 @@
 					<li>
 						<a th:href="@{/user/home}" style="color: orangered;">Home</a>
 					</li>
-					<li class="dropdown"><a th:href="@{/user/chefs}">Chef</a>
-						<!--<ul>
+					<li class="dropdown"><a>Chef</a>
+						<ul>
 							<li th:each="chef : ${chefs}">
 							<a th:href="@{'/user/chef' + '/' + ${chef.id}}" th:text="${chef.nome} + ' ' + ${chef.cognome}">chef</a>
 							</li>
-						</ul>-->
+						</ul>
 					</li>
 					<li class="dropdown"><a>Buffet</a>
 						   <ul>

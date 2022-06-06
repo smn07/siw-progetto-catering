@@ -3,11 +3,11 @@ package com.example.demo.model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
@@ -26,6 +26,10 @@ public class Chef {
 	@NotBlank
 	private String nazionalita;
 	
+	//@Column(length = 2000)
+	@Column(nullable = true)
+	private String img;
+	
 	@OneToMany(cascade = {CascadeType.ALL}, mappedBy= "chef")
 	private List<Buffet> buffet;
 	
@@ -33,11 +37,12 @@ public class Chef {
 		//this.buffet = new ArrayList<Buffet>();
 	}
 	
-	public Chef(String nome, String cognome, String nazionalita, List<Buffet> buffet) {
+	public Chef(String nome, String cognome, String nazionalita, List<Buffet> buffet, String img) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.nazionalita = nazionalita;
 		this.buffet = buffet;
+		this.img = img;
 	}
 
 	public Long getId() {
@@ -80,6 +85,15 @@ public class Chef {
 		this.buffet = buffet;
 	}
 	
+	
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
 	@Override
 	public int hashCode() {
 		return this.getId().hashCode() + 31;

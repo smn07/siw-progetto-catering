@@ -26,6 +26,11 @@
 		<span><input type="text" th:field="*{nazionalita}" th:value="chef.nazionalita"/></span>
 		<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
 	</div>
+
+	<div>
+		<span>Link immagine chef:</span>
+		<span><input type="text" th:field="*{img}"/></span>
+	</div>
 	
 	<div>
 		<div><h4>Lista buffets per questo chef (lo chef di un buffet è modificabile dal buffet stesso)</h4></div>

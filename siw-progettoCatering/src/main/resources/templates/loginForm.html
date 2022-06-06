@@ -1,27 +1,40 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<body>
-	<div>
-		<h4>Login</h4>
-	</div>
-	<form th:action="@{/login}" method="POST">
-		<div>
-			<div>
-				<span>Username:</span>
-				<span><input name="username" type="text" required /></span>
-			</div>		
-			<div>
-				<span>Password:</span>
-				<span><input name="password" type="password" required /></span>
-			</div>
-			<div>
-				<span><button type="submit">Login</button></span>
-			</div>
-			
-			<div>
-				<a th:href="@{/register}">Registrati</a>
-			</div>
-		</div>
-	</form>
-</body>
+    <head>
+        <link rel="stylesheet" href="/css/login.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>    
+    <body style="background-color: black;">
+        <header>
+           <h2>SIW CATERING - AMMINISTRAZIONE</h2>
+        </header>
+        
+        <div id="login_wrapper">
+            <div id="image_wrapper">
+
+            </div>
+            <div id="form_wrapper">
+                <h1>Accedi al tuo account</h1>
+                <div id="form">
+                    <form th:action="@{/login}" method="POST">
+                        <div class="input_form"> 
+                            <span><input name="username" type="text" placeholder="username" required/></span>
+                        </div>
+
+                        <div class="input_form"> 
+                            <span><input name="password" type="password" placeholder="password" required/></span>
+                        </div>
+
+                        <div id="login_butt">
+                            <span><button type="submit">LOGIN</button></span>
+                        </div>
+						<div>
+							<a th:href="@{/register}" style="color: black;">Registrati</a>
+						</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+       
+    </body>
 </html>

@@ -43,6 +43,11 @@ public class ChefService {
 	public void save(@Valid Chef chef) {
 		this.chefRepository.save(chef);
 	}
+	
+	@Transactional
+	public Chef saveC(@Valid Chef chef) {
+		return this.chefRepository.save(chef);
+	}
 
 	public boolean alreadyExists(Chef c) {
 		return this.chefRepository.existsByNomeAndCognome(c.getNome(),c.getCognome());

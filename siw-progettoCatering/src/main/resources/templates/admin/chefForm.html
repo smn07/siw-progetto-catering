@@ -6,7 +6,7 @@
 <body>
 <h1>Aggiungi uno Chef</h1>
 
-<form th:action="@{/admin/chef}" method="POST" th:object="${chef}">
+<form th:action="@{/admin/chef}" method="POST" th:object="${chef}" enctype="multipart/form-data">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>	
@@ -26,6 +26,16 @@
 		<span><input type="text" th:field="*{nazionalita}"/></span>
 		<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazonalita}"></span>
 	</div>
+	<!--<div>
+		<span>Link immagine chef:</span>
+		<span><input type="text" th:field="*{img}"/></span>
+	</div>-->
+	
+	<div>
+		<span>Link immagine chef:</span>
+		<span><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></span>
+	</div>
+	
 	
 	<!--<div>
 		<div><h4>Aggiungi buffets per questo nuovo chef</h4></div>
