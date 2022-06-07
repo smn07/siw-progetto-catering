@@ -6,7 +6,7 @@
 <body>
 <h1>Modifica lo Chef</h1>
 
-<form th:action="@{'/admin/chefMod' + '/' + ${chef.id}}" method="POST" th:object="${chef}">
+<form th:action="@{'/admin/chefMod' + '/' + ${chef.id}}" method="POST" th:object="${chef}" enctype="multipart/form-data">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>	
@@ -27,9 +27,14 @@
 		<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
 	</div>
 
-	<div>
+	<!--<div>
 		<span>Link immagine chef:</span>
 		<span><input type="text" th:field="*{img}"/></span>
+	</div>-->
+	
+	<div>
+		<span>Link immagine chef:</span>
+		<span><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></span>
 	</div>
 	
 	<div>

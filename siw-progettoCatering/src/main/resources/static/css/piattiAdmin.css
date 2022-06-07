@@ -1,0 +1,72 @@
+body {
+    background-image: linear-gradient(black, rgb(137, 42, 4));
+}
+
+#piatti {
+    padding-top: 1%;
+    border-top: solid;
+    border-top-color: aliceblue;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 124%;
+    
+}
+
+a:visited {
+	text-decoration: none; 
+	font-weight: bold;
+}
+
+a:hover {
+	text-decoration: none; 
+	color:orangered;
+	font-weight: bold;
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center;
+    color: orangered;
+    font-size: 350%;
+    margin-bottom: 3%;
+    margin-top: -4%;
+}
+
+h3 {
+    text-align: center;
+    color: orangered;
+}
+h4 {
+    text-align: center;
+    color: orangered;
+}
+
+ul {
+    padding-left: 0%;
+    margin-bottom: 4%;
+}
+
+p {
+    text-align: center;
+    color: aliceblue;
+}
+
+#logout {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-bottom: 6%;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 6%;
+    margin-bottom: 1%;
+}

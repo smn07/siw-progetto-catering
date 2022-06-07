@@ -1,17 +1,36 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <link rel="stylesheet" href="/css/piattiAdmin.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>  
+    </head>    
 <body>
-	<h4>Elenco piatti</h4>
+	<div id="logout">
+		<div style="margin-right: 3%;"><a href="/admin/home">HOME</a></div>
+		<div style="margin-right: 3%;"><a th:href="@{/admin/piattoForm}">AGGIUNGI</a></div>
+		<div><a th:href="@{/logout}" style="color: orangered;">LOGOUT</a></div>
+	</div>
+	<h1>PIATTI</h1>
 	<ul>
 	<li th:each="piatto : ${piatti}">
-		<a th:href="@{'/admin/piatto' + '/' + ${piatto.id}}" th:text="${piatto.nome}">piatto1</a>
-		<a th:href="@{'/admin/cancellaPiatto' + '/' + ${piatto.id}}" onclick="return confirm('Sei sicuro di eliminare questo piatto?')">cancella</a>
-		<a th:href="@{'/admin/modificaPiatto' + '/' + ${piatto.id}}">modifica</a>
+		<div id="piatti">
+			<h3 th:text="${piatto.nome}">nome piatto</h3>
+			<p th:text="${piatto.descrizione}">descrizione piatto</p>
+			<h4>Ingredienti</h4>
+			<ul>
+				<li th:each="ing : ${piatto.ingredienti}">
+					<p th:text="${ing.nome}"></p>
+				</li>
+			</ul>
+			<div>
+				<img th:src="${piatto.img}" alt="" style="width: 49%; height: 60%; margin-top: 2%;">
+			</div>
+			<div id="container">
+				<div style="margin-right: 3%;"><a th:href="@{'/admin/cancellaPiatto' + '/' + ${piatto.id}}" onclick="return confirm('Sei sicuro di eliminare questo piatto?')">CANCELLA</a></div>
+				<div><a th:href="@{'/admin/modificaPiatto' + '/' + ${piatto.id}}">MODIFICA</a></div>
+			</div>
+		</div>
 	</li>
 	</ul>
-	<footer><a href="/admin/home">Home</a></footer>
 </body>
 </html>

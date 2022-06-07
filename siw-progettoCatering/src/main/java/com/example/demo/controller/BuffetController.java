@@ -105,12 +105,7 @@ public class BuffetController {
 		
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			this.buffetService.save(buffet); // salvo l'oggetto
-			
-			Boolean conditionChef = buffet.getChef() != null;
-			model.addAttribute("conditionChef",conditionChef);
-			Boolean conditionPiatti = !buffet.getPiatti().isEmpty();
-			model.addAttribute("conditionPiatti",conditionPiatti);
-			return "admin/buffet.html";
+			return "redirect:/admin/buffets";
 		} else {
 		
 			model.addAttribute("piatti",this.piattoService.findAll());
@@ -143,8 +138,8 @@ public class BuffetController {
 			
 			this.buffetService.save(vecchioBuffet);
 			
-			model.addAttribute("buffet", vecchioBuffet);
-			return "/admin/buffet.html";
+			//model.addAttribute("buffet", vecchioBuffet);
+			return "redirect:/admin/buffets";
 		} else {
 
 			model.addAttribute("buffet", this.buffetService.findById(vecchioId));

@@ -1,26 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <link rel="stylesheet" href="/css/homeAdmin.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>  
+    </head>   
 <body>
 	<h1>AMMINISTRAZIONE</h1>
-	<p>qui puoi modificare contenuti del sistema catering.</p>
-				<div >
-				<ul>
-					<li><a th:href="@{/admin/chefs}">Chef</a></li>
-					<div><a th:href="@{/admin/chefForm}">aggiungi nuovo chef</a></div>
-					<li><a th:href="@{/admin/buffets}">Buffet</a></li>
-					<div><a th:href="@{/admin/buffetForm}">aggiungi nuovo buffet</a></div>
-					<li><a th:href="@{/admin/piatti}">Piatti</a></li>
-					<div><a th:href="@{/admin/piattoForm}">aggiungi nuovo piatto</a></div>
-					<li><a th:href="@{/admin/ingredienti}">Ingredienti</a></li>
-					<div><a th:href="@{/admin/ingredienteForm}">aggiungi nuovo ingrediente</a></div>
-				</ul>
+	<p>Contenuti del sistema catering.</p>
+			<div id="ext">
+					<div class="list" style="margin-top: 18%;"><a th:href="@{/admin/chefs}">Chef</a></div>
+					<div class="list"><a th:href="@{/admin/buffets}">Buffet</a></div>
+					<div class="list"><a th:href="@{/admin/piatti}">Piatti</a></div>
+					<div class="list"><a th:href="@{/admin/ingredienti}">Ingredienti</a></div>
 			</div>
-			
-				<div>
+			<div id="logout">
+				<a th:href="@{/logout}" style="color: orangered;">LOGOUT</a>
+			</div>
    	</div>
 	
 </body>
 </html>
+

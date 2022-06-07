@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <link rel="stylesheet" href="/css/ingAdmin.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>  
+    </head>    
 <body>
-	<h4>Elenco ingredienti</h4>
+	<div id="logout">
+		<div style="margin-right: 3%;"><a href="/admin/home">HOME</a></div>
+		<div style="margin-right: 3%;"><a th:href="@{/admin/ingredienteForm}">AGGIUNGI</a></div>
+		<div><a th:href="@{/logout}" style="color: orangered;">LOGOUT</a></div>
+	</div>
+	<h1>INGREDIENTI</h1>
 	<ul>
-		<li th:each="ingrediente : ${ingredienti}">
-			<a th:href="@{'/admin/ingrediente' + '/' + ${ingrediente.id}}" th:text="${ingrediente.nome}">ingrediente</a>
-			<a th:href="@{'/admin/cancellaIngrediente' + '/' + ${ingrediente.id}}" onclick="return confirm('Sei sicuro di eliminare questo ingrediente?')">cancella</a>
-			<a th:href="@{'/admin/modificaIngrediente' + '/' + ${ingrediente.id}}">modifica</a>
-		</li>
+	<li th:each="ing : ${ingredienti}">
+		<div id="ing">
+			<h3 th:text="${ing.nome}">nome ingrediente</h3>
+			<p th:text="${ing.descrizione}">descrizione ingrediente</p>
+			<div>
+				<img th:src="${ing.img}" alt="" style="width: 49%; height: 60%; margin-top: 2%;">
+			</div>
+			<div id="container">
+				<div style="margin-right: 3%;"><a th:href="@{'/admin/cancellaIngrediente' + '/' + ${ing.id}}" onclick="return confirm('Sei sicuro di eliminare questo ingrediente?')">CANCELLA</a></div>
+				<div><a th:href="@{'/admin/modificaIngrediente' + '/' + ${ing.id}}">MODIFICA</a></div>
+			</div>
+		</div>
+	</li>
 	</ul>
-	<footer><a href="/admin/home">Home</a></footer>
 </body>
 </html>

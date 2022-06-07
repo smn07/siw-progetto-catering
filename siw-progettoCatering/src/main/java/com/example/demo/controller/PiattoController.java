@@ -92,8 +92,8 @@ public class PiattoController {
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			this.piattoService.save(piatto); // salvo l'oggetto
 			
-			model.addAttribute("piatto", piattoService.findById(piatto.getId()));
-			return "/admin/piatto.html";
+			//model.addAttribute("piatto", piattoService.findById(piatto.getId()));
+			return "redirect:/admin/piatti";
 		} else {
 		
 			model.addAttribute("ingredienti",this.ingredienteService.findAll());
@@ -123,7 +123,7 @@ public class PiattoController {
 			
 			this.piattoService.save(vecchioPiatto);
 			model.addAttribute("piatto", piatto);
-			return "/admin/piatto.html";
+			return "redirect:/admin/piatti";
 		} else {
 
 			model.addAttribute("piatto",this.piattoService.findById(vecchioId));

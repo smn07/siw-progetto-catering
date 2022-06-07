@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -113,8 +112,8 @@ public class ChefController {
 //			
 //			this.chefService.save(chef); // salvo l'oggetto
 //			
-//			model.addAttribute("chef", chefService.findById(chef.getId()));
-//			return "admin/chef.html";
+//			//model.addAttribute("chef", chefService.findById(chef.getId()));
+//			return "redirect:/admin/chefs";
 //		} else {
 //
 //			model.addAttribute("buffets",this.buffetService.findAll());
@@ -137,8 +136,8 @@ public class ChefController {
             String uploadDir = "src/main/resources/static/images/";
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
             
-            model.addAttribute("chefs", this.chefService.findAll());
-            return "/admin/chefs.html";
+            //model.addAttribute("chefs", this.chefService.findAll());
+            return "redirect:/admin/chefs";
         }
         return "admin/chefForm.html";
     }
@@ -151,7 +150,8 @@ public class ChefController {
 	}
 	
 	@PostMapping("/admin/chefMod/{id}")
-	public String modificaChefForm(@PathVariable("id")Long vecchioId,@Valid @ModelAttribute("chef") Chef chef,BindingResult bindingResult, Model model) {
+	public String modificaChefForm(@PathVariable("id")Long vecchioId,@RequestParam("image") MultipartFile multipartFile,
+									@Valid @ModelAttribute("chef") Chef chef,BindingResult bindingResult, Model model) throws IOException {
 		
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			//this.chefService.save(chef); // salvo l'oggetto
@@ -161,12 +161,17 @@ public class ChefController {
 			vecchioChef.setNome(chef.getNome());
 			vecchioChef.setCognome(chef.getCognome());
 			vecchioChef.setNazionalita(chef.getNazionalita());
-			vecchioChef.setImg(chef.getImg());
 			
-			this.chefService.save(vecchioChef);
+        	/*UPLOAD FOTO*/
+        	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            vecchioChef.setImg("/images/" + fileName);
+            this.chefService.save(vecchioChef);
+            String uploadDir = "src/main/resources/static/images/";
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			
-			model.addAttribute("chef", vecchioChef);
-			return "/admin/chef.html";
+			
+			//model.addAttribute("chef", vecchioChef);
+			return "redirect:/admin/chefs";
 		} else {
 
 			model.addAttribute("chef",this.chefService.findById(vecchioId));

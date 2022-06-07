@@ -1,17 +1,37 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
+        <link rel="stylesheet" href="/css/buffetsAdmin.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>  
+    </head>    
 <body>
-	<h4>Elenco buffet</h4>
+	<div id="logout">
+		<div style="margin-right: 3%;"><a href="/admin/home">HOME</a></div>
+		<div style="margin-right: 3%;"><a th:href="@{/admin/buffetForm}">AGGIUNGI</a></div>
+		<div><a th:href="@{/logout}" style="color: orangered;">LOGOUT</a></div>
+	</div>
+	<h1>BUFFET</h1>
 	<ul>
 	<li th:each="buffet : ${buffets}">
-		<a th:href="@{'/admin/buffet' + '/' + ${buffet.id}}" th:text="${buffet.nome}">buffet1</a>
-		<a th:href="@{'/admin/cancellaBuffet' + '/' + ${buffet.id}}" onclick="return confirm('Sei sicuro di eliminare questo buffet?')">cancella</a>
-		<a th:href="@{'/admin/modificaBuffet' + '/' + ${buffet.id}}">modifica</a>
+		<div id="buffets">
+			<h3 th:text="${buffet.nome}">nome buffet</h3>
+			<p th:text="${buffet.descrizione}">descrizione buffet</p>
+			<h4>Piatti</h4>
+			<ul>
+				<li th:each="piatto : ${buffet.piatti}">
+					<p th:text="${piatto.nome}"></p>
+				</li>
+			</ul>
+			<div>
+				<span style="color: aliceblue;">A cura dello chef:</span>
+				<span th:text="${buffet.chef.nome}+' '+${buffet.chef.cognome}" style="color: orangered;"></span>
+			</div>
+			<div id="container">
+				<div style="margin-right: 3%;"><a th:href="@{'/admin/cancellaBuffet' + '/' + ${buffet.id}}" onclick="return confirm('Sei sicuro di eliminare questo buffet?')">CANCELLA</a></div>
+				<div><a th:href="@{'/admin/modificaBuffet' + '/' + ${buffet.id}}">MODIFICA</a></div>
+			</div>
+		</div>
 	</li>
 	</ul>
-	<footer><a href="/admin/home">Home</a></footer>
 </body>
 </html>

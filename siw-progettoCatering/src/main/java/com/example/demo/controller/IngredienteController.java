@@ -99,8 +99,8 @@ public class IngredienteController {
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			this.ingredienteService.save(ingrediente); // salvo l'oggetto
 			
-			model.addAttribute("ingrediente", ingredienteService.findById(ingrediente.getId()));
-			return "/admin/ingrediente.html";
+			//model.addAttribute("ingrediente", ingredienteService.findById(ingrediente.getId()));
+			return "redirect:/admin/ingredienti";
 		} else
 			return "/admin/ingredienteForm.html"; // ci sono errori, torna alla form iniziale
 	}
@@ -124,8 +124,8 @@ public class IngredienteController {
 			vecchioIngrediente.setImg(ingrediente.getImg());
 			this.ingredienteService.save(vecchioIngrediente);
 			
-			model.addAttribute("ingrediente", vecchioIngrediente);
-			return "/admin/ingrediente.html";
+			//model.addAttribute("ingrediente", vecchioIngrediente);
+			return "redirect:/admin/ingredienti";
 		} else {
 
 			model.addAttribute("ingrediente",this.ingredienteService.findById(vecchioId));
