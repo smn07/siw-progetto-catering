@@ -123,7 +123,7 @@ public class ChefController {
 //	}
 	
 	@PostMapping("/admin/chef")
-    public String newChef(@ModelAttribute("chef") Chef chef, @RequestParam("image") MultipartFile multipartFile,
+    public String addChef(@ModelAttribute("chef") Chef chef, @RequestParam("image") MultipartFile multipartFile,
     									Model model, BindingResult bindingResult) throws IOException {
     	this.chefValidator.validate(chef, bindingResult);
         if (!bindingResult.hasErrors()) {
@@ -136,7 +136,6 @@ public class ChefController {
             String uploadDir = "src/main/resources/static/images/";
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
             
-            //model.addAttribute("chefs", this.chefService.findAll());
             return "redirect:/admin/chefs";
         }
         return "admin/chefForm.html";

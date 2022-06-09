@@ -7,7 +7,7 @@
 <body>
 <h1>Aggiungi un ingrediente</h1>
 
-<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}">
+<form th:action="@{/admin/ingrediente}" method="POST" th:object="${ingrediente}" enctype="multipart/form-data">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>	
@@ -23,7 +23,7 @@
 	</div>
 	<div>
 		<span>Link immagine ingrediente:</span>
-		<span><input type="text" th:field="*{img}"/></span>
+		<span><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></span>
 	</div>
 	<div>
 		<span>Origine:</span>

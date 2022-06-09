@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -7,11 +8,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.model.Buffet;
 import com.example.demo.model.Chef;
@@ -21,6 +25,7 @@ import com.example.demo.service.BuffetService;
 import com.example.demo.service.ChefService;
 import com.example.demo.service.IngredienteService;
 import com.example.demo.service.PiattoService;
+import com.example.demo.util.FileUploadUtil;
 import com.example.demo.validator.IngredienteValidator;
 
 @Controller
@@ -91,19 +96,38 @@ public class IngredienteController {
 		return "/admin/ingredienteForm.html";
 	}
 	
+//	@PostMapping("/admin/ingrediente")
+//	public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,BindingResult bindingResult, Model model) {
+//
+//		this.ingredienteValidator.validate(ingrediente, bindingResult);
+//		
+//		if (!bindingResult.hasErrors()){// se i dati sono corretti
+//			this.ingredienteService.save(ingrediente); // salvo l'oggetto
+//			
+//			//model.addAttribute("ingrediente", ingredienteService.findById(ingrediente.getId()));
+//			return "redirect:/admin/ingredienti";
+//		} else
+//			return "/admin/ingredienteForm.html"; // ci sono errori, torna alla form iniziale
+//	}
+	
 	@PostMapping("/admin/ingrediente")
-	public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,BindingResult bindingResult, Model model) {
-
-		this.ingredienteValidator.validate(ingrediente, bindingResult);
-		
-		if (!bindingResult.hasErrors()){// se i dati sono corretti
-			this.ingredienteService.save(ingrediente); // salvo l'oggetto
-			
-			//model.addAttribute("ingrediente", ingredienteService.findById(ingrediente.getId()));
-			return "redirect:/admin/ingredienti";
-		} else
-			return "/admin/ingredienteForm.html"; // ci sono errori, torna alla form iniziale
-	}
+    public String addChef(@ModelAttribute("ingrediente") Ingrediente ingrediente, @RequestParam("image") MultipartFile multipartFile,
+    									Model model, BindingResult bindingResult) throws IOException {
+    	this.ingredienteValidator.validate(ingrediente, bindingResult);
+        if (!bindingResult.hasErrors()) {
+        	
+        	
+        	/*UPLOAD FOTO*/
+        	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            ingrediente.setImg("/images/" + fileName);
+            this.ingredienteService.save(ingrediente);
+            String uploadDir = "src/main/resources/static/images/";
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            
+            return "redirect:/admin/ingredienti";
+        }
+        return "admin/ingredienteForm.html";
+    }
 	
 	@GetMapping("/admin/modificaIngrediente/{id}")
 	public String modificaIngrediente(@PathVariable("id")Long id, Model model) {
@@ -112,7 +136,8 @@ public class IngredienteController {
 	}
 	
 	@PostMapping("/admin/ingredienteMod/{id}")
-	public String modificaIngredienteForm(@PathVariable("id")Long vecchioId,@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,BindingResult bindingResult, Model model) {
+	public String modificaIngredienteForm(@PathVariable("id")Long vecchioId,@RequestParam("image") MultipartFile multipartFile,
+			@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,BindingResult bindingResult, Model model) throws IOException {
 		
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			
@@ -122,7 +147,13 @@ public class IngredienteController {
 			vecchioIngrediente.setDescrizione(ingrediente.getDescrizione());
 			vecchioIngrediente.setOrigine(ingrediente.getOrigine());
 			vecchioIngrediente.setImg(ingrediente.getImg());
-			this.ingredienteService.save(vecchioIngrediente);
+			
+        	/*UPLOAD FOTO*/
+        	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+            vecchioIngrediente.setImg("/images/" + fileName);
+            this.ingredienteService.save(vecchioIngrediente);
+            String uploadDir = "src/main/resources/static/images/";
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			
 			//model.addAttribute("ingrediente", vecchioIngrediente);
 			return "redirect:/admin/ingredienti";

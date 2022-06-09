@@ -31,6 +31,7 @@ public class Buffet {
 	@ManyToOne
 	private Chef chef;
 	
+	
 	public Buffet() {
 		//this.piatti = new ArrayList<Piatto>();
 	}
@@ -81,6 +82,7 @@ public class Buffet {
 	public void setChef(Chef chef) {
 		this.chef = chef;
 	}
+	
 
 	@Override
 	public int hashCode() {

@@ -6,7 +6,7 @@
 <body>
 <h1>Modifica il Piatto</h1>
 
-<form th:action="@{'/admin/piattoMod' + '/' + ${piatto.id}}" method="POST" th:object="${piatto}">
+<form th:action="@{'/admin/piattoMod' + '/' + ${piatto.id}}" method="POST" th:object="${piatto}" enctype="multipart/form-data">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>	
@@ -23,7 +23,7 @@
 	
 	<div>
 		<span>Link immagine piatto:</span>
-		<span><input type="text" th:field="*{img}"/></span>
+		<span><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></span>
 	</div>
 		
     
