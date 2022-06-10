@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8"/>
@@ -26,29 +26,53 @@
 		<span><input type="text" th:field="*{nazionalita}"/></span>
 		<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazonalita}"></span>
 	</div>
-	<!--<div>
-		<span>Link immagine chef:</span>
-		<span><input type="text" th:field="*{img}"/></span>
-	</div>-->
 	
 	<div>
 		<span>Link immagine chef:</span>
 		<span><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></span>
 	</div>
-	
-	
-	<!--<div>
-		<div><h4>Aggiungi buffets per questo nuovo chef</h4></div>
-		<ul>
-			<li th:each="buffet : ${buffets}">
-				<input type="checkbox" th:field="${chef.buffet}" th:value="${buffet.id}">
-				<label th:text="${buffet.nome}">buffet</label>
-			</li>
-		</ul>
-	</div>-->
 	<div>
 		<span><button type="submit">Conferma</button></span>
 	</div>
 </form>
 </body>
+</html>
+
+-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+        <link rel="stylesheet" href="/css/chefForm.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head> 
+	<body>
+		<h1>AGGIUNGI UNO CHEF</h1>
+		<div id="sfondo">
+		<div id="contenuto">
+			<form th:action="@{/admin/chef}" method="POST" th:object="${chef}" enctype="multipart/form-data">
+				<div th:if="${#fields.hasGlobalErrors()}">
+					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+				</div>
+				<input type="text" th:field="*{nome}" placeholder="Nome..."/>
+				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+
+				<input type="text" th:field="*{cognome}" placeholder="Cognome..."/>
+				<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+
+				<input type="text" th:field="*{nazionalita}" placeholder="Nazionalità..."/>
+				<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+
+				<div id="immC">
+				<label>Immagine Chef: </label>
+				<div style="margin-top: 1.2%;"><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></div>
+				</div>
+		
+				<div style="margin-top: 3%;">
+					<span><button type="submit">Conferma</button></span>
+				</div>
+			</form>
+		</div>
+		</div>
+	</body>
 </html>
