@@ -122,7 +122,8 @@ public class IngredienteController {
             ingrediente.setImg("/images/" + fileName);
             this.ingredienteService.save(ingrediente);
             String uploadDir = "src/main/resources/static/images/";
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            if(fileName != null && multipartFile != null && !fileName.isEmpty())
+            	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
             
             return "redirect:/admin/ingredienti";
         }
@@ -153,7 +154,8 @@ public class IngredienteController {
             vecchioIngrediente.setImg("/images/" + fileName);
             this.ingredienteService.save(vecchioIngrediente);
             String uploadDir = "src/main/resources/static/images/";
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            if(fileName != null && multipartFile != null && !fileName.isEmpty())
+            	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			
 			//model.addAttribute("ingrediente", vecchioIngrediente);
 			return "redirect:/admin/ingredienti";

@@ -119,7 +119,8 @@ public class PiattoController {
             piatto.setImg("/images/" + fileName);
             this.piattoService.save(piatto);
             String uploadDir = "src/main/resources/static/images/";
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            if(fileName != null && multipartFile != null && !fileName.isEmpty())
+            	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
             
             return "redirect:/admin/piatti";
         }
@@ -144,14 +145,16 @@ public class PiattoController {
 			vecchioPiatto.setNome(piatto.getNome());
 			vecchioPiatto.setDescrizione(piatto.getDescrizione());
 			vecchioPiatto.setIngredienti(piatto.getIngredienti());
-			vecchioPiatto.setImg(piatto.getImg());
+			//vecchioPiatto.setImg(piatto.getImg());
 			
         	/*UPLOAD FOTO*/
         	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            vecchioPiatto.setImg("/images/" + fileName);
-            this.piattoService.save(vecchioPiatto);
             String uploadDir = "src/main/resources/static/images/";
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            if(fileName != null && multipartFile != null && !fileName.isEmpty()) {
+            	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+                vecchioPiatto.setImg("/images/" + fileName);
+            }
+            this.piattoService.save(vecchioPiatto);
             
 			return "redirect:/admin/piatti";
 		} else {

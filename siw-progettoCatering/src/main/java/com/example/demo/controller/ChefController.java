@@ -130,11 +130,14 @@ public class ChefController {
         	
         	
         	/*UPLOAD FOTO*/
+        	if(multipartFile.getOriginalFilename() != null) {
         	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             chef.setImg("/images/" + fileName);
             this.chefService.save(chef);
             String uploadDir = "src/main/resources/static/images/";
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            if(fileName != null && multipartFile != null && !fileName.isEmpty())
+            	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        	}
             
             return "redirect:/admin/chefs";
         }
@@ -166,7 +169,8 @@ public class ChefController {
             vecchioChef.setImg("/images/" + fileName);
             this.chefService.save(vecchioChef);
             String uploadDir = "src/main/resources/static/images/";
-            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            if(fileName != null && multipartFile != null && !fileName.isEmpty())
+            	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 			
 			
 			//model.addAttribute("chef", vecchioChef);

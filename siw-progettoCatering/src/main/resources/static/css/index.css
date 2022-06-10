@@ -1,5 +1,6 @@
 body {
-    background-color: black;
+    background-image: url("/images/sfondoIndex.jpg");
+    background-size: cover;
 }
 
 h2 {
@@ -55,4 +56,8 @@ a:hover {
     color:orangered;
     text-align: center;
     font-size: smaller;
+}
+
+#container {
+    margin-top: -4%;
 }
