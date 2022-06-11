@@ -96,19 +96,6 @@ public class IngredienteController {
 		return "/admin/ingredienteForm.html";
 	}
 	
-//	@PostMapping("/admin/ingrediente")
-//	public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,BindingResult bindingResult, Model model) {
-//
-//		this.ingredienteValidator.validate(ingrediente, bindingResult);
-//		
-//		if (!bindingResult.hasErrors()){// se i dati sono corretti
-//			this.ingredienteService.save(ingrediente); // salvo l'oggetto
-//			
-//			//model.addAttribute("ingrediente", ingredienteService.findById(ingrediente.getId()));
-//			return "redirect:/admin/ingredienti";
-//		} else
-//			return "/admin/ingredienteForm.html"; // ci sono errori, torna alla form iniziale
-//	}
 	
 	@PostMapping("/admin/ingrediente")
     public String addChef(@ModelAttribute("ingrediente") Ingrediente ingrediente, @RequestParam("image") MultipartFile multipartFile,
@@ -147,17 +134,17 @@ public class IngredienteController {
 			vecchioIngrediente.setNome(ingrediente.getNome());
 			vecchioIngrediente.setDescrizione(ingrediente.getDescrizione());
 			vecchioIngrediente.setOrigine(ingrediente.getOrigine());
-			vecchioIngrediente.setImg(ingrediente.getImg());
+			//vecchioIngrediente.setImg(ingrediente.getImg());
 			
         	/*UPLOAD FOTO*/
         	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            vecchioIngrediente.setImg("/images/" + fileName);
-            this.ingredienteService.save(vecchioIngrediente);
             String uploadDir = "src/main/resources/static/images/";
-            if(fileName != null && multipartFile != null && !fileName.isEmpty())
+            if(fileName != null && multipartFile != null && !fileName.isEmpty()) {
             	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            	vecchioIngrediente.setImg("/images/" + fileName);
+            }
+            this.ingredienteService.save(vecchioIngrediente);
 			
-			//model.addAttribute("ingrediente", vecchioIngrediente);
 			return "redirect:/admin/ingredienti";
 		} else {
 

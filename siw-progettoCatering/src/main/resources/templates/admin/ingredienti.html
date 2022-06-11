@@ -17,6 +17,10 @@
 			<h3 th:text="${ing.nome}">nome ingrediente</h3>
 			<p th:text="${ing.descrizione}">descrizione ingrediente</p>
 			<div>
+				<span style="color: orangered;">Origine: </span>
+				<span th:text="${ing.origine}" style="color: aliceblue;">origine ingrediente</span>
+			</div>
+			<div>
 				<img th:src="${ing.img}" alt="" style="width: 49%; height: 60%; margin-top: 2%;">
 			</div>
 			<div id="container">

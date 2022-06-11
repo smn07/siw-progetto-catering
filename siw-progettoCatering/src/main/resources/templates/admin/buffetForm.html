@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8"/>
-	</head>
+	<head>
+        <link rel="stylesheet" href="/css/buffetForm.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head> 
 <body>
-<h1>Aggiungi un Buffet</h1>
+	<h1>AGGIUNGI UN BUFFET</h1>
+	<div id="sfondo">
+	<div id="contenuto">
 
-<form th:action="@{/admin/buffet}" method="POST" th:object="${buffet}">
+	<form th:action="@{/admin/buffet}" method="POST" th:object="${buffet}">
 		<div th:if="${#fields.hasGlobalErrors()}">
-  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>	
-	<div>
-		<span>Nome:</span>
-		<span><input type="text" th:field="*{nome}"/></span>
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<input type="text" th:field="*{nome}" placeholder="Nome..."/>
 		<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-	</div>
-	<div>
-		<span>Descrizione:</span>
-		<span><input type="text" th:field="*{descrizione}"/></span>
+
+		<input type="text" th:field="*{descrizione}" placeholder="Descrizione..."/>
 		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
-	</div>
-	
-	<div>
-		<div><h4>Aggiungi chef per questo nuovo buffet</h4></div>	
-		
-		
-	<div>
-        <div>Seleziona  chef:
+		<h4>Aggiungi chef per questo nuovo buffet</h4>
+		<div style="margin-top: 2%;"><span id="selC">Seleziona  chef:</span>
             <select th:field="*{chef}">
                 <option value=""></option>
                 <option th:each="chef : ${chefs}"
@@ -34,21 +27,23 @@
                         th:text="${chef.nome} + ' ' + ${chef.cognome}">
                 </option>
             </select>
-        </div><span th:if="${#fields.hasErrors('chef')}" th:errors="*{chef}"></span>
-    </div>
+        </div>
+		<div th:if="${#fields.hasErrors('chef')}" th:errors="*{chef}"></div>
+		<h4>Aggiungi piatti per questo nuovo buffet</h4>
 		
-	<div>
-		<div><h4>Aggiungi piatti per questo nuovo buffet</h4></div>
-		<ul>
-			<li th:each="piatto : ${piatti}">
-				<input type="checkbox" th:field="*{piatti}" th:value="${piatto.id}">
-				<label th:text="${piatto.nome}">piatto</label>
-			</li>
-		</ul>
+		<div style="margin-top: 2%;">
+			<ul>
+				<li th:each="piatto : ${piatti}">
+					<input type="checkbox" th:field="*{piatti}" th:value="${piatto.id}">
+					<label th:text="${piatto.nome}">piatto</label>
+				</li>
+			</ul>
+		</div>
+		<div style="margin-top: 3%;">
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
 	</div>
-	<div>
-		<span><button type="submit">Conferma</button></span>
 	</div>
-</form>
 </body>
 </html>

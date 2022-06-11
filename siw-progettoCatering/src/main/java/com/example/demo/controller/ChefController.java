@@ -101,26 +101,6 @@ public class ChefController {
 		return "/admin/chefForm.html";
 	}
 	
-//	@PostMapping("/admin/chef")
-//	public String addChef(@Valid @ModelAttribute("chef") Chef chef,BindingResult bindingResult, Model model) {
-//
-//		this.chefValidator.validate(chef, bindingResult);
-//		
-//		if (!bindingResult.hasErrors()){// se i dati sono corretti
-//			
-//			
-//			
-//			this.chefService.save(chef); // salvo l'oggetto
-//			
-//			//model.addAttribute("chef", chefService.findById(chef.getId()));
-//			return "redirect:/admin/chefs";
-//		} else {
-//
-//			model.addAttribute("buffets",this.buffetService.findAll());
-//			return "/admin/chefForm.html"; // ci sono errori, torna alla form iniziale
-//			
-//		}
-//	}
 	
 	@PostMapping("/admin/chef")
     public String addChef(@ModelAttribute("chef") Chef chef, @RequestParam("image") MultipartFile multipartFile,
@@ -166,12 +146,12 @@ public class ChefController {
 			
         	/*UPLOAD FOTO*/
         	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            vecchioChef.setImg("/images/" + fileName);
-            this.chefService.save(vecchioChef);
             String uploadDir = "src/main/resources/static/images/";
-            if(fileName != null && multipartFile != null && !fileName.isEmpty())
+            if(fileName != null && multipartFile != null && !fileName.isEmpty()) {
             	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-			
+            	vecchioChef.setImg("/images/" + fileName);
+            }
+            this.chefService.save(vecchioChef);
 			
 			//model.addAttribute("chef", vecchioChef);
 			return "redirect:/admin/chefs";

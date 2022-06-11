@@ -1,53 +1,36 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8"/>
-	</head>
+	<head>
+        <link rel="stylesheet" href="/css/chefFormMod.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
 <body>
-<h1>Modifica lo Chef</h1>
+	<h1>MODIFICA LO CHEF</h1>
 
-<form th:action="@{'/admin/chefMod' + '/' + ${chef.id}}" method="POST" th:object="${chef}" enctype="multipart/form-data">
+	<form th:action="@{'/admin/chefMod' + '/' + ${chef.id}}" method="POST" th:object="${chef}" enctype="multipart/form-data">
+	<div id="sfondo">
+	<div id="contenuto">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>	
-	<div>
-		<span>Nome:</span>
-		<span><input type="text" th:field="*{nome}" th:value="chef.nome"/></span>
+		<input type="text" th:field="*{nome}" placeholder="Nome..." th:value="${chef.nome}"/>
 		<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-	</div>
-	<div>
-		<span>Cognome:</span>
-		<span><input type="text" th:field="*{cognome}" th:value="chef.cognome"/></span>
-		<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
-	</div>
-	
-	<div>
-		<span>Nazionalità:</span>
-		<span><input type="text" th:field="*{nazionalita}" th:value="chef.nazionalita"/></span>
-		<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
-	</div>
 
-	<!--<div>
-		<span>Link immagine chef:</span>
-		<span><input type="text" th:field="*{img}"/></span>
-	</div>-->
-	
-	<div>
-		<span>Link immagine chef:</span>
-		<span><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></span>
+		<input type="text" th:field="*{cognome}" placeholder="Cognome..." th:value="${chef.cognome}"/>
+		<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+
+		<input type="text" th:field="*{nazionalita}" placeholder="Nazionalità..." th:value="${chef.nazionalita}"/>
+		<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+		
+		<div id="immC">
+			<label>Immagine Chef: </label>
+			<div style="margin-top: 1.2%;"><input type="file" name="image" accept="image/png,image/jpeg,image/jpg" th:value="${chef.img}"/></div>
+		</div>
+		<div style="margin-top: 3%;">
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
 	</div>
-	
-	<div>
-		<div><h4>Lista buffets per questo chef (lo chef di un buffet è modificabile dal buffet stesso)</h4></div>
-		<ul>
-			<li th:each="buffet : ${chef.buffet}">
-				<p th:text="${buffet.nome}">buffet</p>
-			</li>
-		</ul>
 	</div>
-	<div>
-		<span><button type="submit">Conferma</button></span>
-	</div>
-</form>
 </body>
 </html>

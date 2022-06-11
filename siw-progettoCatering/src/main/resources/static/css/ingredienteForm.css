@@ -1,0 +1,64 @@
+body {
+    background-image: linear-gradient(black, rgb(137, 42, 4));
+  }
+  
+  h1 {
+    color: orangered;
+    text-align: center;
+    margin-bottom: 5%;
+  }
+  
+  input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    box-sizing: border-box;
+    opacity: 0.4;
+  }
+  
+  button[type=submit] {
+    width: 100%;
+    background-color: rgb(191, 126, 85);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  
+  button[type=submit]:hover {
+    background-color:orangered
+  }
+  
+  #contenuto {
+    border-radius: 5px;
+    background-image: url("/images/sfondoIngForm.jpg");
+    background-size: cover;
+    padding: 20px;
+    width: 60%;
+    margin: auto;
+  }
+  
+  #sfondo {
+    height: 100vh;
+  }
+  
+  label {
+    font-weight: bolder;
+    color: black;
+    background-color: rgb(230, 174, 139);;
+  }
+  
+  ::placeholder {
+    font-weight: bolder;
+    color: black;
+    opacity: none;
+  }
+  
+  #immC {
+    margin-top: 2%;
+  }

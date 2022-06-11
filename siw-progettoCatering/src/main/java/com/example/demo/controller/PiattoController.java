@@ -89,23 +89,6 @@ public class PiattoController {
 		return "/admin/piattoForm.html";
 	}
 	
-//	@PostMapping("/admin/piatto")
-//	public String addPiatto(@Valid @ModelAttribute("piatto") Piatto piatto,BindingResult bindingResult, Model model) {
-//
-//		this.piattoValidator.validate(piatto, bindingResult);
-//		
-//		if (!bindingResult.hasErrors()){// se i dati sono corretti
-//			this.piattoService.save(piatto); // salvo l'oggetto
-//			
-//			//model.addAttribute("piatto", piattoService.findById(piatto.getId()));
-//			return "redirect:/admin/piatti";
-//		} else {
-//		
-//			model.addAttribute("ingredienti",this.ingredienteService.findAll());
-//			return "/admin/piattoForm.html"; // ci sono errori, torna alla form iniziale
-//			
-//		}
-//	}
 	
 	@PostMapping("/admin/piatto")
     public String addChef(@ModelAttribute("piatto") Piatto piatto, @RequestParam("image") MultipartFile multipartFile,
