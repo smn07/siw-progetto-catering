@@ -91,7 +91,7 @@ public class PiattoController {
 	
 	
 	@PostMapping("/admin/piatto")
-    public String addChef(@ModelAttribute("piatto") Piatto piatto, @RequestParam("image") MultipartFile multipartFile,
+    public String addPiatto(@ModelAttribute("piatto") Piatto piatto, @RequestParam("image") MultipartFile multipartFile,
     									Model model, BindingResult bindingResult) throws IOException {
     	this.piattoValidator.validate(piatto, bindingResult);
         if (!bindingResult.hasErrors()) {
@@ -107,6 +107,8 @@ public class PiattoController {
             
             return "redirect:/admin/piatti";
         }
+        
+        model.addAttribute("ingredienti",this.ingredienteService.findAll());
         return "admin/piattoForm.html";
     }
 	
@@ -121,9 +123,12 @@ public class PiattoController {
 	public String modificaPiattoForm(@PathVariable("id")Long vecchioId,@RequestParam("image") MultipartFile multipartFile,
 			@Valid @ModelAttribute("chef") Piatto piatto,BindingResult bindingResult, Model model) throws IOException {
 		
+		
+		Piatto vecchioPiatto = this.piattoService.findById(vecchioId);
+		if(!vecchioPiatto.getNome().equals(piatto.getNome()))
+			this.piattoValidator.validate(vecchioPiatto, bindingResult);
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			
-			Piatto vecchioPiatto = this.piattoService.findById(vecchioId);
 			vecchioPiatto.setId(piatto.getId());
 			vecchioPiatto.setNome(piatto.getNome());
 			vecchioPiatto.setDescrizione(piatto.getDescrizione());

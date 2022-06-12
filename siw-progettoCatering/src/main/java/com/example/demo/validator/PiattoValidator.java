@@ -22,8 +22,19 @@ public class PiattoValidator implements Validator{
 
 	@Override
 	public void validate(Object o, Errors errors) {
+		
+		Piatto piatto = (Piatto)o;
+		
 		if(this.piattoService.alreadyExists((Piatto)o)) {
 			errors.reject("piatto.duplicato");
+		}
+		
+		if(piatto.getNome().isBlank()) {
+			errors.reject("NotBlank.piatto.nome");
+		}
+		
+		if(piatto.getDescrizione().isBlank()) {
+			errors.reject("NotBlank.piatto.descrizione");
 		}
 	}
 

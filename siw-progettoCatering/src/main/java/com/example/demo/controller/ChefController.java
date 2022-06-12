@@ -103,8 +103,8 @@ public class ChefController {
 	
 	
 	@PostMapping("/admin/chef")
-    public String addChef(@ModelAttribute("chef") Chef chef, @RequestParam("image") MultipartFile multipartFile,
-    									Model model, BindingResult bindingResult) throws IOException {
+    public String addChef(@ModelAttribute("chef") Chef chef,BindingResult bindingResult, @RequestParam("image") MultipartFile multipartFile,
+    									Model model) throws IOException {
     	this.chefValidator.validate(chef, bindingResult);
         if (!bindingResult.hasErrors()) {
         	
@@ -132,13 +132,16 @@ public class ChefController {
 	}
 	
 	@PostMapping("/admin/chefMod/{id}")
-	public String modificaChefForm(@PathVariable("id")Long vecchioId,@RequestParam("image") MultipartFile multipartFile,
-									@Valid @ModelAttribute("chef") Chef chef,BindingResult bindingResult, Model model) throws IOException {
+	public String modificaChefForm(@PathVariable("id")Long vecchioId,@Valid @ModelAttribute("chef") Chef chef,BindingResult bindingResult,@RequestParam("image") MultipartFile multipartFile,
+									 Model model) throws IOException {
+		
+		Chef vecchioChef = this.chefService.findById(vecchioId);
+		if(!vecchioChef.getNome().equals(chef.getNome()) || !vecchioChef.getCognome().equals(chef.getCognome()))
+			this.chefValidator.validate(chef, bindingResult);
 		
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			//this.chefService.save(chef); // salvo l'oggetto
 			
-			Chef vecchioChef = this.chefService.findById(vecchioId);
 			vecchioChef.setId(chef.getId());
 			vecchioChef.setNome(chef.getNome());
 			vecchioChef.setCognome(chef.getCognome());

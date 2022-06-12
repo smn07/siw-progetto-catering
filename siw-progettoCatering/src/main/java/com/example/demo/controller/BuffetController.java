@@ -133,9 +133,13 @@ public class BuffetController {
 	@PostMapping("/admin/buffetMod/{id}")
 	public String modificaBuffetForm(@PathVariable("id")Long vecchioId,@Valid @ModelAttribute("buffet") Buffet buffet,BindingResult bindingResult, Model model) {
 		
+		
+		Buffet vecchioBuffet = this.buffetService.findById(vecchioId);
+		if(!vecchioBuffet.getNome().equals(buffet.getNome()))
+			this.buffetValidator.validate(buffet, bindingResult);
+			
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			
-			Buffet vecchioBuffet = this.buffetService.findById(vecchioId);
 			vecchioBuffet.setId(buffet.getId());
 			vecchioBuffet.setNome(buffet.getNome());
 			vecchioBuffet.setDescrizione(buffet.getDescrizione());

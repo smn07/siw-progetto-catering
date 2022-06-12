@@ -22,8 +22,22 @@ public class ChefValidator implements Validator{
 
 	@Override
 	public void validate(Object o, Errors errors) {
+		Chef chef = (Chef)o;
+		
 		if(this.chefService.alreadyExists((Chef)o)) {
 			errors.reject("chef.duplicato");
+		}
+		
+		if(chef.getNome().isBlank()) {
+			errors.reject("NotBlank.chef.nome");
+		}
+		
+		if(chef.getCognome().isBlank()) {
+			errors.reject("NotBlank.chef.cognome");
+		}
+		
+		if(chef.getNazionalita().isBlank()) {
+			errors.reject("NotBlank.chef.nazionalita");
 		}
 	}
 

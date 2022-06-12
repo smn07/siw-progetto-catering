@@ -14,13 +14,13 @@
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
 		<input type="text" th:field="*{nome}" placeholder="Nome..." th:value="${ingrediente.nome}"/>
-		<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+		
 
 		<input type="text" th:field="*{descrizione}" placeholder="Descrizione..." th:value="${ingrediente.Descrizione}"/>
-		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+		
 
 		<input type="text" th:field="*{origine}" placeholder="Origine..." th:value="${ingrediente.origine}"/>
-		<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>
+		<!--<span th:if="${#fields.hasErrors('origine')}" th:errors="*{origine}"></span>-->
 
 		<div id="immC">
 		<label>Immagine Ingrediente: </label>

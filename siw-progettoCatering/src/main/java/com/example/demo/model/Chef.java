@@ -26,7 +26,6 @@ public class Chef {
 	@NotBlank
 	private String nazionalita;
 	
-	//@Column(length = 2000)
 	@Column(nullable = true)
 	private String img;
 	

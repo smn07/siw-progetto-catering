@@ -14,10 +14,8 @@
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
 		<input type="text" th:field="*{nome}" placeholder="Nome..."/>
-		<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 
 		<input type="text" th:field="*{descrizione}" placeholder="Descrizione..."/>
-		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
 		<h4>Aggiungi chef per questo nuovo buffet</h4>
 		<div style="margin-top: 2%;"><span id="selC">Seleziona  chef:</span>
             <select th:field="*{chef}">

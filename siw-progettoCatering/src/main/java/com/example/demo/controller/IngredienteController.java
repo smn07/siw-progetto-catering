@@ -85,6 +85,14 @@ public class IngredienteController {
 	
 	@GetMapping("/admin/cancellaIngrediente/{id}")
 	public String deleteIngrediente(@PathVariable("id")Long id, Model model) {
+		
+		Ingrediente ingrediente = this.ingredienteService.findById(id);
+		List<Piatto> piatti = this.piattoService.findAll();
+		for(Piatto p : piatti) {
+			p.getIngredienti().remove(ingrediente);
+			this.piattoService.save(p);
+		}
+		
 		this.ingredienteService.deleteById(id);
 		model.addAttribute("ingredienti",this.ingredienteService.findAll());
 		return "/admin/ingredienti.html";
@@ -127,9 +135,14 @@ public class IngredienteController {
 	public String modificaIngredienteForm(@PathVariable("id")Long vecchioId,@RequestParam("image") MultipartFile multipartFile,
 			@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,BindingResult bindingResult, Model model) throws IOException {
 		
+		
+		Ingrediente vecchioIngrediente = this.ingredienteService.findById(vecchioId);
+		if(!vecchioIngrediente.getNome().equals(ingrediente.getNome()))
+			this.ingredienteValidator.validate(vecchioIngrediente, bindingResult);
+			
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			
-			Ingrediente vecchioIngrediente = this.ingredienteService.findById(vecchioId);
+		
 			vecchioIngrediente.setId(ingrediente.getId());
 			vecchioIngrediente.setNome(ingrediente.getNome());
 			vecchioIngrediente.setDescrizione(ingrediente.getDescrizione());

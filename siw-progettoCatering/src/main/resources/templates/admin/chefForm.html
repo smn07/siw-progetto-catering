@@ -13,13 +13,11 @@
 					<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 				</div>
 				<input type="text" th:field="*{nome}" placeholder="Nome..."/>
-				<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 
 				<input type="text" th:field="*{cognome}" placeholder="Cognome..."/>
-				<span th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
-
+				
 				<input type="text" th:field="*{nazionalita}" placeholder="Nazionalità..."/>
-				<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+				<!--<span th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>-->
 
 				<div id="immC">
 				<label>Immagine Chef: </label>

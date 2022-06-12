@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<meta charset="UTF-8"/>
-	</head>
+	<head>
+        <link rel="stylesheet" href="/css/piattoForm.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head> 
 <body>
-<h1>Aggiungi un piatto</h1>
+	<h1>AGGIUNGI UN PIATTO</h1>
+	<div id="sfondo">
+	<div id="contenuto">
 
-<form th:action="@{/admin/piatto}" method="POST" th:object="${piatto}" enctype="multipart/form-data">
+	<form th:action="@{/admin/piatto}" method="POST" th:object="${piatto}" enctype="multipart/form-data">
 		<div th:if="${#fields.hasGlobalErrors()}">
-  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>	
-	<div>
-		<span>Nome:</span>
-		<span><input type="text" th:field="*{nome}"/></span>
-		<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-	</div>
-	<div>
-		<span>Descrizione:</span>
-		<span><input type="text" th:field="*{descrizione}"/></span>
-		<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
-	</div>
-	
-	<div>
-		<span>Link immagine piatto:</span>
-		<span><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></span>
-	</div>
-	<div>
-		<div><h4>Aggiungi ingredienti per questo nuovo piatto</h4></div>
-		<ul>
-			<li th:each="ingrediente : ${ingredienti}">
-				<input type="checkbox" th:field="${piatto.ingredienti}" th:value="${ingrediente.id}">
-				<label th:text="${ingrediente.nome}">ingrediente</label>
-			</li>
-		</ul>
-	</div>
-	<div>
-		<span><button type="submit">Conferma</button></span>
-	</div>
-</form>
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<input type="text" th:field="*{nome}" placeholder="Nome..."/>
+		
+
+		<input type="text" th:field="*{descrizione}" placeholder="Descrizione..."/>
+		
+
+		<div id="immC">
+			<label>Immagine Piatto: </label>
+			<div style="margin-top: 1.2%;"><input type="file" name="image" accept="image/png,image/jpeg,image/jpg"/></div>
+		</div>
+
+		<h4>Aggiungi ingredienti per questo nuovo piatto</h4>
+
+		<div style="margin-top: 2%;">
+			<ul>
+				<li th:each="ing : ${ingredienti}">
+					<input type="checkbox" th:field="*{ingredienti}" th:value="${ing.id}">
+					<label th:text="${ing.nome}">ingrediente</label>
+				</li>
+			</ul>
+		</div>
+		<div style="margin-top: 3%;">
+			<span><button type="submit">Conferma</button></span>
+		</div>
+	</form>
+</div>
+</div>
 </body>
 </html>
