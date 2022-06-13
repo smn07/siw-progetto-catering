@@ -28,15 +28,15 @@ public class ChefValidator implements Validator{
 			errors.reject("chef.duplicato");
 		}
 		
-		if(chef.getNome().isBlank()) {
+		if(chef.getNome().isEmpty()) {
 			errors.reject("NotBlank.chef.nome");
 		}
 		
-		if(chef.getCognome().isBlank()) {
+		if(chef.getCognome().isEmpty()) {
 			errors.reject("NotBlank.chef.cognome");
 		}
 		
-		if(chef.getNazionalita().isBlank()) {
+		if(chef.getNazionalita().isEmpty()) {
 			errors.reject("NotBlank.chef.nazionalita");
 		}
 	}

@@ -28,15 +28,15 @@ public class IngredienteValidator implements Validator{
 			errors.reject("ingrediente.duplicato");
 		}
 		
-		if(ingrediente.getNome().isBlank()) {
+		if(ingrediente.getNome().isEmpty()) {
 			errors.reject("NotBlank.ingrediente.nome");
 		}
 		
-		if(ingrediente.getDescrizione().isBlank()) {
+		if(ingrediente.getDescrizione().isEmpty()) {
 			errors.reject("NotBlank.ingrediente.descrizione");
 		}
 		
-		if(ingrediente.getOrigine().isBlank()) {
+		if(ingrediente.getOrigine().isEmpty()) {
 			errors.reject("NotBlank.ingrediente.origine");
 		}
 	}

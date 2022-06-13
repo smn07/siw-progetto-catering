@@ -29,11 +29,11 @@ public class BuffetValidator implements Validator{
 			errors.reject("buffet.duplicato");
 		}
 		
-		if(buffet.getNome().isBlank()) {
+		if(buffet.getNome().isEmpty()) {
 			errors.reject("NotBlank.buffet.nome");
 		}
 		
-		if(buffet.getDescrizione().isBlank()) {
+		if(buffet.getDescrizione().isEmpty()) {
 			errors.reject("NotBlank.buffet.descrizione");
 		}
 	}
