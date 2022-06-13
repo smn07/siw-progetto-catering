@@ -29,11 +29,11 @@ public class PiattoValidator implements Validator{
 			errors.reject("piatto.duplicato");
 		}
 		
-		if(piatto.getNome().isBlank()) {
+		if(piatto.getNome().isEmpty()) {
 			errors.reject("NotBlank.piatto.nome");
 		}
 		
-		if(piatto.getDescrizione().isBlank()) {
+		if(piatto.getDescrizione().isEmpty()) {
 			errors.reject("NotBlank.piatto.descrizione");
 		}
 	}
