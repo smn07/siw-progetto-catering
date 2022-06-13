@@ -53,7 +53,7 @@ public class IngredienteController {
 	}
 	
 	@GetMapping("/user/ingrediente/{id}")
-	public String getChef(@PathVariable("id")Long id, Model model) {
+	public String getIngrediente(@PathVariable("id")Long id, Model model) {
 		Ingrediente ingrediente = ingredienteService.findById(id);
 		model.addAttribute("ingrediente", ingrediente);
 		List<Chef> chefs = chefService.findAll();
@@ -88,12 +88,16 @@ public class IngredienteController {
 		
 		Ingrediente ingrediente = this.ingredienteService.findById(id);
 		List<Piatto> piatti = this.piattoService.findAll();
+		Boolean ok = false;
 		for(Piatto p : piatti) {
-			p.getIngredienti().remove(ingrediente);
-			this.piattoService.save(p);
+			if(p.getIngredienti().contains(ingrediente)) {
+				model.addAttribute("condizione",true);
+				ok = true;
+				break;
+			}
 		}
 		
-		this.ingredienteService.deleteById(id);
+		if(!ok) this.ingredienteService.deleteById(id);
 		model.addAttribute("ingredienti",this.ingredienteService.findAll());
 		return "/admin/ingredienti.html";
 	}
@@ -106,7 +110,7 @@ public class IngredienteController {
 	
 	
 	@PostMapping("/admin/ingrediente")
-    public String addChef(@ModelAttribute("ingrediente") Ingrediente ingrediente, @RequestParam("image") MultipartFile multipartFile,
+    public String addIngrediente(@ModelAttribute("ingrediente") Ingrediente ingrediente, @RequestParam("image") MultipartFile multipartFile,
     									Model model, BindingResult bindingResult) throws IOException {
     	this.ingredienteValidator.validate(ingrediente, bindingResult);
         if (!bindingResult.hasErrors()) {
@@ -147,7 +151,6 @@ public class IngredienteController {
 			vecchioIngrediente.setNome(ingrediente.getNome());
 			vecchioIngrediente.setDescrizione(ingrediente.getDescrizione());
 			vecchioIngrediente.setOrigine(ingrediente.getOrigine());
-			//vecchioIngrediente.setImg(ingrediente.getImg());
 			
         	/*UPLOAD FOTO*/
         	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());

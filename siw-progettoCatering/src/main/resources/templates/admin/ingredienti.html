@@ -11,6 +11,7 @@
 		<div><a th:href="@{/logout}" style="color: orangered;">LOGOUT</a></div>
 	</div>
 	<h1>INGREDIENTI</h1>
+	<div th:if="${condizione}"><h2 style="color: aliceblue; text-align:center;">Attenzione! Non puoi cancellare questo ingrediente, è presente in un piatto.</h2></div>
 	<ul>
 	<li th:each="ing : ${ingredienti}">
 		<div id="ing">
