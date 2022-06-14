@@ -42,7 +42,7 @@ public class HomeController {
 		model.addAttribute("buffets", buffets);
 		model.addAttribute("piatti", piatti);
 		model.addAttribute("ingredienti", ingredienti);
-		return "home.html";
+		return "/templates/user/home.html";
 	}
 	
 	@GetMapping("/admin/home")
