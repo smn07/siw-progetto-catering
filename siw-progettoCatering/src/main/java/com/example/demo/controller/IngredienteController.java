@@ -49,7 +49,7 @@ public class IngredienteController {
 	public String getIngredienti(Model model) {
 		List<Ingrediente> ingredienti = ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
-		return "/user/ingredienti.html";
+		return "user/ingredienti.html";
 	}
 	
 	@GetMapping("/user/ingrediente/{id}")
@@ -65,14 +65,14 @@ public class IngredienteController {
 		model.addAttribute("buffets", buffets);
 		model.addAttribute("piatti", piatti);
 		model.addAttribute("ingredienti", ingredienti);
-		return "/user/ingrediente.html";
+		return "user/ingrediente.html";
 	}
 	
 	@GetMapping("/admin/ingredienti")
 	public String getIngredientiAdmin(Model model) {
 		List<Ingrediente> ingredienti = ingredienteService.findAll();
 		model.addAttribute("ingredienti", ingredienti);
-		return "/admin/ingredienti.html";
+		return "admin/ingredienti.html";
 	}
 	
 	@GetMapping("/admin/ingrediente/{id}")
@@ -80,7 +80,7 @@ public class IngredienteController {
 		Ingrediente ingrediente = this.ingredienteService.findById(id);
 		
 		model.addAttribute("ingrediente", ingrediente);
-		return "/admin/ingrediente.html";
+		return "admin/ingrediente.html";
 	}
 	
 	@GetMapping("/admin/cancellaIngrediente/{id}")
@@ -99,13 +99,13 @@ public class IngredienteController {
 		
 		if(!ok) this.ingredienteService.deleteById(id);
 		model.addAttribute("ingredienti",this.ingredienteService.findAll());
-		return "/admin/ingredienti.html";
+		return "admin/ingredienti.html";
 	}
 	
 	@GetMapping("/admin/ingredienteForm")
 	public String addIngredienteForm(Model model) {
 		model.addAttribute("ingrediente", new Ingrediente());
-		return "/admin/ingredienteForm.html";
+		return "admin/ingredienteForm.html";
 	}
 	
 	
@@ -132,7 +132,7 @@ public class IngredienteController {
 	@GetMapping("/admin/modificaIngrediente/{id}")
 	public String modificaIngrediente(@PathVariable("id")Long id, Model model) {
 		model.addAttribute("ingrediente",this.ingredienteService.findById(id));
-		return "/admin/ingredienteFormMod.html";
+		return "admin/ingredienteFormMod.html";
 	}
 	
 	@PostMapping("/admin/ingredienteMod/{id}")

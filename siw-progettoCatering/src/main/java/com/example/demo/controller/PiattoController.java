@@ -43,28 +43,28 @@ public class PiattoController {
 	public String getPiatti(Model model) {
 		List<Piatto> piatti = piattoService.findAll();
 		model.addAttribute("piatti", piatti);
-		return "/user/piatti.html";
+		return "user/piatti.html";
 	}
 	
 	@GetMapping("/user/piatto/{id}")
 	public String getChef(@PathVariable("id")Long id, Model model) {
 		Piatto piatto = piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
-		return "/user/piatto.html";
+		return "user/piatto.html";
 	}
 	
 	@GetMapping("/admin/piatti")
 	public String getPiattiAdmin(Model model) {
 		List<Piatto> piatti = piattoService.findAll();
 		model.addAttribute("piatti", piatti);
-		return "/admin/piatti.html";
+		return "admin/piatti.html";
 	}
 	
 	@GetMapping("/admin/piatto/{id}")
 	public String getPiattoAdmin(@PathVariable("id")Long id, Model model) {
 		Piatto piatto = this.piattoService.findById(id);
 		model.addAttribute("piatto", piatto);
-		return "/admin/piatto.html";
+		return "admin/piatto.html";
 	}
 	
 	
@@ -79,14 +79,14 @@ public class PiattoController {
 		
 		this.piattoService.deleteById(id);
 		model.addAttribute("piatti",this.piattoService.findAll());
-		return "/admin/piatti.html";
+		return "admin/piatti.html";
 	}
 	
 	@GetMapping("/admin/piattoForm")
 	public String addPiattoForm(Model model) {
 		model.addAttribute("piatto", new Piatto());
 		model.addAttribute("ingredienti",this.ingredienteService.findAll());
-		return "/admin/piattoForm.html";
+		return "admin/piattoForm.html";
 	}
 	
 	
@@ -116,7 +116,7 @@ public class PiattoController {
 	public String modificaPiatto(@PathVariable("id")Long id, Model model) {
 		model.addAttribute("piatto",this.piattoService.findById(id));
 		model.addAttribute("ingredienti",this.ingredienteService.findAll());
-		return "/admin/piattoFormMod.html";
+		return "admin/piattoFormMod.html";
 	}
 	
 	@PostMapping("/admin/piattoMod/{id}")

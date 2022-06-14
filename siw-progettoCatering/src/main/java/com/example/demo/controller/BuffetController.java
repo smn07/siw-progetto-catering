@@ -50,7 +50,7 @@ public class BuffetController {
 	public String getBuffets(Model model) {
 		List<Buffet> buffets = this.buffetService.findAll();
 		model.addAttribute("buffets", buffets);
-		return "/user/buffets.html";
+		return "user/buffets.html";
 	}
 	
 	@GetMapping("/user/buffet/{id}")
@@ -66,14 +66,14 @@ public class BuffetController {
 		model.addAttribute("buffets", buffets);
 		model.addAttribute("piatti", piatti);
 		model.addAttribute("ingredienti", ingredienti);
-		return "/user/buffet.html";
+		return "user/buffet.html";
 	}
 	
 	@GetMapping("/admin/buffets")
 	public String getBuffetsAdmin(Model model) {
 		List<Buffet> buffets = this.buffetService.findAll();
 		model.addAttribute("buffets", buffets);
-		return "/admin/buffets.html";
+		return "admin/buffets.html";
 	}
 	
 	@GetMapping("/admin/buffet/{id}")
@@ -84,7 +84,7 @@ public class BuffetController {
 		Boolean conditionPiatti = !buffet.getPiatti().isEmpty();
 		model.addAttribute("conditionPiatti",conditionPiatti);
 		model.addAttribute("buffet", buffet);
-		return "/admin/buffet.html";
+		return "admin/buffet.html";
 	}
 	
 	
@@ -92,7 +92,7 @@ public class BuffetController {
 	public String deleteBuffet(@PathVariable("id")Long id, Model model) {
 		this.buffetService.deleteById(id);
 		model.addAttribute("buffets",this.buffetService.findAll());
-		return "/admin/buffets.html";
+		return "admin/buffets.html";
 	}
 	
 	@GetMapping("/admin/buffetForm")
@@ -100,7 +100,7 @@ public class BuffetController {
 		model.addAttribute("buffet", new Buffet());
 		model.addAttribute("piatti",this.piattoService.findAll());
 		model.addAttribute("chefs",this.chefService.findAll());
-		return "/admin/buffetForm.html";
+		return "admin/buffetForm.html";
 	}
 	
 	@PostMapping("/admin/buffet")
@@ -127,7 +127,7 @@ public class BuffetController {
 		model.addAttribute("buffet",this.buffetService.findById(id));
 		model.addAttribute("piatti",this.piattoService.findAll());
 		model.addAttribute("chefs",this.chefService.findAll());
-		return "/admin/buffetFormMod.html";
+		return "admin/buffetFormMod.html";
 	}
 	
 	@PostMapping("/admin/buffetMod/{id}")

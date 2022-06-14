@@ -47,7 +47,7 @@ public class HomeController {
 	
 	@GetMapping("/admin/home")
 	public String getAdminHome(Model model) {
-	return "/admin/home.html";
+	return "admin/home.html";
 	}
 
 }
