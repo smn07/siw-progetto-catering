@@ -135,8 +135,7 @@ public class ChefController {
 		if(!vecchioChef.getNome().equals(chef.getNome()) || !vecchioChef.getCognome().equals(chef.getCognome()))
 			this.chefValidator.validate(chef, bindingResult);
 		
-		if (!bindingResult.hasErrors()){// se i dati sono corretti
-			//this.chefService.save(chef); // salvo l'oggetto
+		if (!bindingResult.hasErrors()){
 			
 			vecchioChef.setId(chef.getId());
 			vecchioChef.setNome(chef.getNome());
