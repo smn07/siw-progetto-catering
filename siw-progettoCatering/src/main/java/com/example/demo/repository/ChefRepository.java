@@ -10,8 +10,5 @@ import com.example.demo.model.Chef;
 
 public interface ChefRepository extends CrudRepository<Chef, Long> {
 
-	@Query("SELECT buffet FROM Chef WHERE id = ?1")
-	public List<Buffet> findAllBuffet(Long id);
-
 	public boolean existsByNomeAndCognome(String nome, String cognome);
 }

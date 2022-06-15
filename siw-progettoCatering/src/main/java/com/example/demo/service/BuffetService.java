@@ -20,8 +20,8 @@ public class BuffetService {
 
 	public List<Buffet> findAll(){
 		List<Buffet> buffets = new ArrayList<Buffet>();
-		for (Buffet c : this.buffetRepository.findAll()) {
-			buffets.add(c);
+		for (Buffet b : this.buffetRepository.findAll()) {
+			buffets.add(b);
 		}
 		return buffets;
 	}

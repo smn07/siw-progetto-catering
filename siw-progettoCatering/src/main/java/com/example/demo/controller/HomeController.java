@@ -26,27 +26,29 @@ public class HomeController {
 	private ChefService chefService;
 	
 	@Autowired
-	private PiattoService piattoService;
-	
-	@Autowired
 	private IngredienteService ingredienteService;
 	
 	@GetMapping("/user/home")
 	public String getAll(Model model) {
 		List<Chef> chefs = chefService.findAll();
 		List<Buffet> buffets = buffetService.findAll();
-		List<Piatto> piatti = piattoService.findAll();
 		List<Ingrediente> ingredienti = ingredienteService.findAll();
+		
+		/*utile per la navbar*/
 		
 		model.addAttribute("chefs", chefs);
 		model.addAttribute("buffets", buffets);
-		model.addAttribute("piatti", piatti);
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/home.html";
 	}
 	
 	@GetMapping("/admin/home")
 	public String getAdminHome(Model model) {
+	return "admin/home.html";
+	}
+	
+	@GetMapping("/admin")
+	public String getAdmin(Model model) {
 	return "admin/home.html";
 	}
 

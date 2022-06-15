@@ -39,12 +39,12 @@ public class PiattoController {
 	@Autowired
 	private PiattoValidator piattoValidator;
 	
-	@GetMapping("/user/piatti")
-	public String getPiatti(Model model) {
-		List<Piatto> piatti = piattoService.findAll();
-		model.addAttribute("piatti", piatti);
-		return "user/piatti.html";
-	}
+//	@GetMapping("/user/piatti")
+//	public String getPiatti(Model model) {
+//		List<Piatto> piatti = piattoService.findAll();
+//		model.addAttribute("piatti", piatti);
+//		return "user/piatti.html";
+//	}
 	
 	@GetMapping("/user/piatto/{id}")
 	public String getChef(@PathVariable("id")Long id, Model model) {
@@ -60,12 +60,12 @@ public class PiattoController {
 		return "admin/piatti.html";
 	}
 	
-	@GetMapping("/admin/piatto/{id}")
-	public String getPiattoAdmin(@PathVariable("id")Long id, Model model) {
-		Piatto piatto = this.piattoService.findById(id);
-		model.addAttribute("piatto", piatto);
-		return "admin/piatto.html";
-	}
+//	@GetMapping("/admin/piatto/{id}")
+//	public String getPiattoAdmin(@PathVariable("id")Long id, Model model) {
+//		Piatto piatto = this.piattoService.findById(id);
+//		model.addAttribute("piatto", piatto);
+//		return "admin/piatto.html";
+//	}
 	
 	
 	@GetMapping("/admin/cancellaPiatto/{id}")
@@ -105,7 +105,8 @@ public class PiattoController {
             if(fileName != null && multipartFile != null && !fileName.isEmpty())
             	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
             
-            return "redirect:/admin/piatti";
+            model.addAttribute("piatti",this.piattoService.findAll());
+            return "admin/piatti";
         }
         
         model.addAttribute("ingredienti",this.ingredienteService.findAll());
@@ -126,14 +127,13 @@ public class PiattoController {
 		
 		Piatto vecchioPiatto = this.piattoService.findById(vecchioId);
 		if(!vecchioPiatto.getNome().equals(piatto.getNome()))
-			this.piattoValidator.validate(vecchioPiatto, bindingResult);
+			this.piattoValidator.validate(piatto, bindingResult);
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			
 			vecchioPiatto.setId(piatto.getId());
 			vecchioPiatto.setNome(piatto.getNome());
 			vecchioPiatto.setDescrizione(piatto.getDescrizione());
 			vecchioPiatto.setIngredienti(piatto.getIngredienti());
-			//vecchioPiatto.setImg(piatto.getImg());
 			
         	/*UPLOAD FOTO*/
         	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
@@ -144,7 +144,8 @@ public class PiattoController {
             }
             this.piattoService.save(vecchioPiatto);
             
-			return "redirect:/admin/piatti";
+            model.addAttribute("piatti",this.piattoService.findAll());
+			return "admin/piatti";
 		} else {
 
 			model.addAttribute("piatto",this.piattoService.findById(vecchioId));

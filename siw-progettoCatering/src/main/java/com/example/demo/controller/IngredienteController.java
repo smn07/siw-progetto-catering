@@ -45,12 +45,12 @@ public class IngredienteController {
 	@Autowired
 	private IngredienteValidator ingredienteValidator;
 	
-	@GetMapping("/user/ingredienti")
-	public String getIngredienti(Model model) {
-		List<Ingrediente> ingredienti = ingredienteService.findAll();
-		model.addAttribute("ingredienti", ingredienti);
-		return "user/ingredienti.html";
-	}
+//	@GetMapping("/user/ingredienti")
+//	public String getIngredienti(Model model) {
+//		List<Ingrediente> ingredienti = ingredienteService.findAll();
+//		model.addAttribute("ingredienti", ingredienti);
+//		return "user/ingredienti.html";
+//	}
 	
 	@GetMapping("/user/ingrediente/{id}")
 	public String getIngrediente(@PathVariable("id")Long id, Model model) {
@@ -58,12 +58,11 @@ public class IngredienteController {
 		model.addAttribute("ingrediente", ingrediente);
 		List<Chef> chefs = chefService.findAll();
 		List<Buffet> buffets = buffetService.findAll();
-		List<Piatto> piatti = piattoService.findAll();
 		List<Ingrediente> ingredienti = ingredienteService.findAll();
 		
+		/*utile per nav bar*/
 		model.addAttribute("chefs", chefs);
 		model.addAttribute("buffets", buffets);
-		model.addAttribute("piatti", piatti);
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/ingrediente.html";
 	}
@@ -75,13 +74,13 @@ public class IngredienteController {
 		return "admin/ingredienti.html";
 	}
 	
-	@GetMapping("/admin/ingrediente/{id}")
-	public String getIngredienteAdmin(@PathVariable("id")Long id, Model model) {
-		Ingrediente ingrediente = this.ingredienteService.findById(id);
-		
-		model.addAttribute("ingrediente", ingrediente);
-		return "admin/ingrediente.html";
-	}
+//	@GetMapping("/admin/ingrediente/{id}")
+//	public String getIngredienteAdmin(@PathVariable("id")Long id, Model model) {
+//		Ingrediente ingrediente = this.ingredienteService.findById(id);
+//		
+//		model.addAttribute("ingrediente", ingrediente);
+//		return "admin/ingrediente.html";
+//	}
 	
 	@GetMapping("/admin/cancellaIngrediente/{id}")
 	public String deleteIngrediente(@PathVariable("id")Long id, Model model) {
@@ -115,7 +114,6 @@ public class IngredienteController {
     	this.ingredienteValidator.validate(ingrediente, bindingResult);
         if (!bindingResult.hasErrors()) {
         	
-        	
         	/*UPLOAD FOTO*/
         	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             ingrediente.setImg("/images/" + fileName);
@@ -124,7 +122,8 @@ public class IngredienteController {
             if(fileName != null && multipartFile != null && !fileName.isEmpty())
             	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
             
-            return "redirect:/admin/ingredienti";
+            model.addAttribute("ingredienti",this.ingredienteService.findAll());
+            return "admin/ingredienti";
         }
         return "admin/ingredienteForm.html";
     }
@@ -142,13 +141,13 @@ public class IngredienteController {
 		
 		Ingrediente vecchioIngrediente = this.ingredienteService.findById(vecchioId);
 		if(!vecchioIngrediente.getNome().equals(ingrediente.getNome()))
-			this.ingredienteValidator.validate(vecchioIngrediente, bindingResult);
+			this.ingredienteValidator.validate(ingrediente, bindingResult);
 			
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			
 		
-			vecchioIngrediente.setId(ingrediente.getId());
 			vecchioIngrediente.setNome(ingrediente.getNome());
+			vecchioIngrediente.setId(ingrediente.getId());
 			vecchioIngrediente.setDescrizione(ingrediente.getDescrizione());
 			vecchioIngrediente.setOrigine(ingrediente.getOrigine());
 			
@@ -161,7 +160,8 @@ public class IngredienteController {
             }
             this.ingredienteService.save(vecchioIngrediente);
 			
-			return "redirect:/admin/ingredienti";
+            model.addAttribute("ingredienti",this.ingredienteService.findAll());
+			return "admin/ingredienti";
 		} else {
 
 			model.addAttribute("ingrediente",this.ingredienteService.findById(vecchioId));

@@ -32,9 +32,7 @@ public class Chef {
 	@OneToMany(cascade = {CascadeType.ALL}, mappedBy= "chef")
 	private List<Buffet> buffet;
 	
-	public Chef() {
-		//this.buffet = new ArrayList<Buffet>();
-	}
+	public Chef() {}
 	
 	public Chef(String nome, String cognome, String nazionalita, List<Buffet> buffet, String img) {
 		this.nome = nome;

@@ -27,9 +27,7 @@ public class Piatto {
 	@ManyToMany
 	private List<Ingrediente> ingredienti;
 	
-	public Piatto() {
-		//this.ingredienti = new ArrayList<Ingrediente>();
-	}
+	public Piatto() {}
 
 	public Piatto(String nome, String descrizione, List<Ingrediente> ingredienti,String img) {
 		this.nome = nome;

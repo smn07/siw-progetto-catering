@@ -29,10 +29,6 @@ public class ChefService {
 	public Chef findById(Long id) {
 		return chefRepository.findById(id).get();
 	}
-
-	public List<Buffet> findAllBuffet(Long id) {
-		return this.chefRepository.findAllBuffet(id);
-	}
 	
 	@Transactional
 	public void deleteById(Long id) {

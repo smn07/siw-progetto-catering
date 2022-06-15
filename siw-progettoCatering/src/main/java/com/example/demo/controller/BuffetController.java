@@ -46,12 +46,12 @@ public class BuffetController {
 	private BuffetValidator buffetValidator;
 
 	
-	@GetMapping("/user/buffets")
-	public String getBuffets(Model model) {
-		List<Buffet> buffets = this.buffetService.findAll();
-		model.addAttribute("buffets", buffets);
-		return "user/buffets.html";
-	}
+//	@GetMapping("/user/buffets")
+//	public String getBuffets(Model model) {
+//		List<Buffet> buffets = this.buffetService.findAll();
+//		model.addAttribute("buffets", buffets);
+//		return "user/buffets.html";
+//	}
 	
 	@GetMapping("/user/buffet/{id}")
 	public String getBuffet(@PathVariable("id")Long id, Model model) {
@@ -59,12 +59,11 @@ public class BuffetController {
 		model.addAttribute("buffet", buffet);
 		List<Chef> chefs = chefService.findAll();
 		List<Buffet> buffets = buffetService.findAll();
-		List<Piatto> piatti = piattoService.findAll();
 		List<Ingrediente> ingredienti = ingredienteService.findAll();
 		
+		/*utile per la nav bar*/
 		model.addAttribute("chefs", chefs);
 		model.addAttribute("buffets", buffets);
-		model.addAttribute("piatti", piatti);
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/buffet.html";
 	}
@@ -76,16 +75,16 @@ public class BuffetController {
 		return "admin/buffets.html";
 	}
 	
-	@GetMapping("/admin/buffet/{id}")
-	public String getBuffetAdmin(@PathVariable("id")Long id, Model model) {
-		Buffet buffet = this.buffetService.findById(id);
-		Boolean conditionChef = buffet.getChef() != null;
-		model.addAttribute("conditionChef",conditionChef);
-		Boolean conditionPiatti = !buffet.getPiatti().isEmpty();
-		model.addAttribute("conditionPiatti",conditionPiatti);
-		model.addAttribute("buffet", buffet);
-		return "admin/buffet.html";
-	}
+//	@GetMapping("/admin/buffet/{id}")
+//	public String getBuffetAdmin(@PathVariable("id")Long id, Model model) {
+//		Buffet buffet = this.buffetService.findById(id);
+//		Boolean conditionChef = buffet.getChef() != null;
+//		model.addAttribute("conditionChef",conditionChef);
+//		Boolean conditionPiatti = !buffet.getPiatti().isEmpty();
+//		model.addAttribute("conditionPiatti",conditionPiatti);
+//		model.addAttribute("buffet", buffet);
+//		return "admin/buffet.html";
+//	}
 	
 	
 	@GetMapping("/admin/cancellaBuffet/{id}")
@@ -110,7 +109,8 @@ public class BuffetController {
 		
 		if (!bindingResult.hasErrors()){// se i dati sono corretti
 			this.buffetService.save(buffet); // salvo l'oggetto
-			return "redirect:/admin/buffets";
+			model.addAttribute("buffets",this.buffetService.findAll());
+			return "admin/buffets";
 		} else {
 		
 			model.addAttribute("piatti",this.piattoService.findAll());
@@ -148,8 +148,8 @@ public class BuffetController {
 			
 			this.buffetService.save(vecchioBuffet);
 			
-			//model.addAttribute("buffet", vecchioBuffet);
-			return "redirect:/admin/buffets";
+			model.addAttribute("buffets",this.buffetService.findAll());
+			return "admin/buffets";
 		} else {
 
 			model.addAttribute("buffet", this.buffetService.findById(vecchioId));

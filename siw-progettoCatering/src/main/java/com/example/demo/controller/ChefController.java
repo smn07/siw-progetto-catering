@@ -33,8 +33,6 @@ public class ChefController {
 	@Autowired
 	private ChefService chefService;
 	
-	@Autowired
-	private PiattoService piattoService;
 	
 	@Autowired
 	private IngredienteService ingredienteService;
@@ -46,12 +44,12 @@ public class ChefController {
 	@Autowired
 	private ChefValidator chefValidator;
 	
-	@GetMapping("/user/chefs")
-	public String getChefs(Model model) {
-		List<Chef> chefs = chefService.findAll();
-		model.addAttribute("chefs", chefs);
-		return "user/chefs.html";
-	}
+//	@GetMapping("/user/chefs")
+//	public String getChefs(Model model) {
+//		List<Chef> chefs = chefService.findAll();
+//		model.addAttribute("chefs", chefs);
+//		return "user/chefs.html";
+//	}
 	
 	@GetMapping("/user/chef/{id}")
 	public String getChef(@PathVariable("id")Long id, Model model) {
@@ -61,12 +59,11 @@ public class ChefController {
 		
 		List<Chef> chefs = chefService.findAll();
 		List<Buffet> buffets = buffetService.findAll();
-		List<Piatto> piatti = piattoService.findAll();
 		List<Ingrediente> ingredienti = ingredienteService.findAll();
 		
+		/*utile per nav bar*/
 		model.addAttribute("chefs", chefs);
 		model.addAttribute("buffets", buffets);
-		model.addAttribute("piatti", piatti);
 		model.addAttribute("ingredienti", ingredienti);
 		return "user/chef.html";
 	}
@@ -78,13 +75,13 @@ public class ChefController {
 		return "admin/chefs.html";
 	}
 	
-	@GetMapping("/admin/chef/{id}")
-	public String getChefAdmin(@PathVariable("id")Long id, Model model) {
-		Chef chef = chefService.findById(id);
-		
-		model.addAttribute("chef", chef);
-		return "admin/chef.html";
-	}
+//	@GetMapping("/admin/chef/{id}")
+//	public String getChefAdmin(@PathVariable("id")Long id, Model model) {
+//		Chef chef = chefService.findById(id);
+//		
+//		model.addAttribute("chef", chef);
+//		return "admin/chef.html";
+//	}
 	
 
 	@GetMapping("/admin/cancellaChef/{id}")
@@ -97,7 +94,6 @@ public class ChefController {
 	@GetMapping("/admin/chefForm")
 	public String addChefForm(Model model) {
 		model.addAttribute("chef", new Chef());
-		model.addAttribute("buffets",this.buffetService.findAll());
 		return "admin/chefForm.html";
 	}
 	
@@ -118,8 +114,8 @@ public class ChefController {
             if(fileName != null && multipartFile != null && !fileName.isEmpty())
             	FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         	}
-            
-            return "redirect:/admin/chefs";
+        	model.addAttribute("chefs",this.chefService.findAll());
+            return "admin/chefs";
         }
         return "admin/chefForm.html";
     }
@@ -148,6 +144,7 @@ public class ChefController {
 			vecchioChef.setNazionalita(chef.getNazionalita());
 			
         	/*UPLOAD FOTO*/
+			/*caso d'uso: l'amministratore può scegliere se inserire o meno la foto, non deve essere obbligato.*/
         	String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
             String uploadDir = "src/main/resources/static/images/";
             if(fileName != null && multipartFile != null && !fileName.isEmpty()) {
@@ -156,8 +153,8 @@ public class ChefController {
             }
             this.chefService.save(vecchioChef);
 			
-			//model.addAttribute("chef", vecchioChef);
-			return "redirect:/admin/chefs";
+            model.addAttribute("chefs",this.chefService.findAll());
+			return "admin/chefs";
 		} else {
 
 			model.addAttribute("chef",this.chefService.findById(vecchioId));

@@ -41,11 +41,6 @@ public class AuthenticationController {
 	}
 	
 	
-//	@RequestMapping(value = "/loginAdmin", method = RequestMethod.POST) 
-//	public String enter(Model model) {
-//		return "/admin/home.html";
-//	}
-	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
 	public String logout(Model model) {
 		return "index.html";

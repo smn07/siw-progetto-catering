@@ -25,6 +25,7 @@ public class Buffet {
 	@NotBlank
 	private String descrizione;
 	
+	
 	@ManyToMany(cascade = {CascadeType.PERSIST})
 	private List<Piatto> piatti;
 	
@@ -32,9 +33,7 @@ public class Buffet {
 	private Chef chef;
 	
 	
-	public Buffet() {
-		//this.piatti = new ArrayList<Piatto>();
-	}
+	public Buffet() {}
 
 	public Buffet(String nome, String descrizione, List<Piatto> piatti, Chef chef) {
 		this.nome = nome;
